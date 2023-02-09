@@ -1,5 +1,8 @@
-# Team5
+# cs103aspr2023 Team 5
 
-COSI103 Group
-
-Hi. This is a test. I'm so full of energy and passion for git and github.
+Team members:
+Ianna Gilbert iannagilbert@brandeis.edu (captain), gitHub: ianna-g
+Rose Nolan arosenolan@brandeis.edu, github: arosenolan
+Shaithea Alam: shaithea@brandeis.edu  
+Minsung Kim: minsungkim@brandeis.edu, github: mkim6993
+TA: Nazari Tuyo (nazarituyo@brandeis.edu)
