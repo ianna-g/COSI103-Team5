@@ -18,7 +18,7 @@ On Windows:
 % $env:APIKEY="....." # in powershell
 % python gptwebapp.py
 '''
-from flask import request,redirect,url_for,Flask
+from flask import request,redirect,url_for,Flask, render_template
 from gpt import GPT
 import os
 
@@ -28,16 +28,19 @@ gptAPI = GPT(os.environ.get('APIKEY'))
 # Set the secret key to some random bytes. Keep this really secret!
 app.secret_key = b'_5#y2L"F4Q789789uioujkkljkl...8z\n\xec]/'
 
+#index route
 @app.route('/')
 def index():
   ''' display a link to the general query page '''
   print('processing / route')
-  return f'''
-    <h1>GPT Demo</h1>
-    <a href="{url_for('gptdemo')}">Ask questions to GPT</a>
-  '''
+  return render_template('index.html')
 
+# team page route 
+@app.route('/team_5_page')
+def team_5_page():
+  return render_template("/team5Page.html")
 
+# class gpt demo
 @app.route('/gptdemo', methods=['GET', 'POST'])
 def gptdemo():
   ''' handle a get request by sending a form 
@@ -57,6 +60,7 @@ def gptdemo():
     <a href={url_for('gptdemo')}> make another query</a>
     '''
   else:
+    print("PPPOOOOSTTTT")
     return '''
     <h1>GPT Demo App</h1>
     Enter your query below
@@ -65,6 +69,18 @@ def gptdemo():
       <p><input type=submit value="get response">
     </form>
     '''
+
+# ------------------- minsung's routes for ca01 ------------------- #
+# homepage route
+@app.route('/minsung_home')
+def minsung_home():
+  return render_template("/minsung/minsungHome.html")
+
+# prompt engineering route
+@app.route('/get_optimize')
+def get_optimize_page():
+  return render_template("/minsung/getOptimize.html")
+# ------------------- minsung's routes for ca01 ------------------- #
 
 if __name__=='__main__':
   # run the code on port 5001, MacOS uses port 5000 for its own service :(
