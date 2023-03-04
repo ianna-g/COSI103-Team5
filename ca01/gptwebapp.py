@@ -18,6 +18,7 @@ On Windows:
 % $env:APIKEY="....." # in powershell
 % python gptwebapp.py
 '''
+import datetime
 from flask import request,redirect,url_for,Flask, render_template
 from gpt import GPT
 import os
@@ -60,7 +61,6 @@ def gptdemo():
     <a href={url_for('gptdemo')}> make another query</a>
     '''
   else:
-    print("PPPOOOOSTTTT")
     return '''
     <h1>GPT Demo App</h1>
     Enter your query below
@@ -76,11 +76,23 @@ def gptdemo():
 def minsung_home():
   return render_template("/minsung/minsungHome.html")
 
-# prompt engineering route
-@app.route('/get_optimize')
-def get_optimize_page():
-  return render_template("/minsung/getOptimize.html")
-# ------------------- minsung's routes for ca01 ------------------- #
+# about page for get_optimize
+@app.route('/get_optimize_about')
+def get_optimize_about_page():
+  return render_template("/minsung/getOptimizeAbout.html")
+
+# route to try out get_optimize
+@app.route('/get_optimize', methods = ['GET', 'POST'])
+def get_optimize():
+  if request.method == 'POST':
+    prompt = request.form['prompt']
+    answer = gptAPI.getOptimize(prompt)
+    data = { "prompt": prompt, "response": answer }
+    return render_template("/minsung/getOptimizeResponse.html", data = data)
+  else:
+    return render_template("/minsung/getOptimizeGet.html")
+    
+# ----------------------------------------------------------------- #
 
 if __name__=='__main__':
   # run the code on port 5001, MacOS uses port 5000 for its own service :(

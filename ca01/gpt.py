@@ -41,9 +41,31 @@ class GPT():
       stop=None,
       temperature=0.8,
     )
-
     response = completion.choices[0].text
     return response
+  
+  ''''
+  create() params
+  max_tokens: maximum number of tokens to generate in the completion;
+  n: how many completions to generate for each prompt;
+  stop: up to 4 sequences where API will stop generating further tokens;
+  temperature: 0-2, higher values make output more random, lower makes it more deterministic;
+  '''
+
+  # ------------------- minsung ------------------- #
+  def getOptimize(self, prompt):
+    modified_prompt = "Optimize this code: " + prompt
+    completion = openai.Completion.create(
+      engine = self.model_engine,
+      prompt = modified_prompt,
+      max_tokens = 1024,
+      n = 1,
+      stop = None,
+      temperature = .5
+    )
+    response = completion.choices[0].text
+    return response
+  # ----------------------------------------------- #
 
 if __name__=='__main__':
   '''
