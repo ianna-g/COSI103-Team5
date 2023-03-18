@@ -77,20 +77,20 @@ def minsung_home():
   return render_template("/minsung/minsungHome.html")
 
 # about page for get_optimize
-@app.route('/get_optimize_about')
+@app.route('/get_breakfast_about')
 def get_optimize_about_page():
-  return render_template("/minsung/getOptimizeAbout.html")
+  return render_template("/minsung/getBreakfastAbout.html")
 
 # route to try out get_optimize
-@app.route('/get_optimize', methods = ['GET', 'POST'])
+@app.route('/get_breakfast', methods = ['GET', 'POST'])
 def get_optimize():
   if request.method == 'POST':
     prompt = request.form['prompt']
-    answer = gptAPI.getOptimize(prompt)
+    answer = gptAPI.get_breakfast(prompt)
     data = { "prompt": prompt, "response": answer }
-    return render_template("/minsung/getOptimizeResponse.html", data = data)
+    return render_template("/minsung/getBreakfastResponse.html", data = data)
   else:
-    return render_template("/minsung/getOptimizeGet.html")
+    return render_template("/minsung/getBreakfastGet.html")
     
 # ----------------------------------------------------------------- #
 

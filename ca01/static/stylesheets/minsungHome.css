@@ -1,0 +1,94 @@
+body {
+  font-family: Verdana, Arial, sans-serif;
+  background-color: #FFE8D1;
+}
+
+h1 {
+  color: #551730;
+  margin: 10px;
+}
+
+.mainTxt {
+  color: #551730;
+  font-weight: bold;
+}
+
+.mainContainer {
+  background-color: #FEA698;
+  /* background-color: #CB9173; */
+  padding: 15px;
+  margin: 15px;
+  border-radius: 10px;
+}
+
+#breakfastInputForm {
+  margin: 15px;
+}
+
+textarea {
+  border: none;
+  resize: none;
+  width: 300px;
+  height: 150px;
+  font-family: Verdana, Arial, sans-serif;
+  border-radius: 10px;
+  padding: 10px;
+  
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+#ingredientForm {
+  display: flex;
+  flex-direction: row;
+}
+
+input[type=submit] {
+  background-color: #992956;
+  border: none;
+  color: white;
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+  height: 35px;
+  text-align: right;
+  border-radius: 10px;
+}
+
+input[type=submit]:hover {
+  background-color: #83244a;
+}
+
+.recipeTxt {
+  background-color: #fff6ee;
+  margin: 10px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+  padding-left: 10px;
+}
+
+.recipeTxt2 {
+  background-color: #fff6ee;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+#minsungNavBtn{
+  cursor: pointer;
+  background-color: #992956;
+  display: inline-block;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  color: white;
+}
+
+#minsungNavBtn:hover{
+  background-color: #83244a;
+}
+
+.bottomNav {
+}

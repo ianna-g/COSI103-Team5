@@ -53,8 +53,8 @@ class GPT():
   '''
 
   # ------------------- minsung ------------------- #
-  def getOptimize(self, prompt):
-    modified_prompt = "Optimize this code: " + prompt
+  def get_breakfast(self, prompt):
+    modified_prompt = "Give me a creative breakfast dish name and a breakfast recipe using only the following ingredients: " + prompt
     completion = openai.Completion.create(
       engine = self.model_engine,
       prompt = modified_prompt,

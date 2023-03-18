@@ -1,22 +1,30 @@
 <html>
   <head>
     <title>cs103spr2023</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='stylesheets/minsungHome.css') }}"
+    />
   </head>
   <body>
-    <h1>Minsung's Homepage</h1>
-    <ul>
-      <li>
-        <a href="/get_optimize_about">get_optimize (ca01 prompt engineering)</a>
-      </li>
-      <li></li>
-    </ul>
-    <span>
+    <h1>MinSung's Homepage</h1>
+    <div class="mainContainer">
+      <div class="mainTxt">COSI103A Creative Assignments:</div>
+      <ul>
+        <li>
+          <a href="/get_breakfast_about">
+            <div id="minsungNavBtn">get_breakfast(ca01 prompt engineering)</div>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="bottomNav">
       <a href="/team_5_page">
-        <div>Team5</div>
+        <div id="minsungNavBtn">Go To Team5</div>
       </a>
       <a href="/">
-        <div>Home</div>
+        <div id="minsungNavBtn">Go Home</div>
       </a>
-    </span>
+    </div>
   </body>
 </html>

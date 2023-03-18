@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <title>cs103spr2023</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='stylesheets/minsungHome.css') }}"
+    />
+  </head>
+  <body>
+    <h1>get_breakfast</h1>
+    <div class="mainContainer">
+      <div class="mainTxt">
+        <strong>Input ingredients for breakfast</strong> (ex. eggs, banana,
+        sunflower seeds, ...)<strong>:</strong>
+      </div>
+      <div id="breakfastInputForm">
+        <form method="post" id="ingredientForm">
+          <textarea name="prompt"></textarea>
+          <input type="submit" value="Generate Recipe" />
+        </form>
+      </div>
+    </div>
+    <div class="bottomNav">
+      <a href="/get_breakfast_about">
+        <div id="minsungNavBtn">Go Back</div>
+      </a>
+    </div>
+  </body>
+</html>

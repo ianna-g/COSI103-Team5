@@ -1,0 +1,80 @@
+<html>
+  <head>
+    <title>cs103spr2023</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='stylesheets/minsungHome.css') }}"
+    />
+  </head>
+  <body>
+    <h1>About get_breakfast</h1>
+    <div class="mainContainer">
+      <div>
+        <strong>Function:</strong><br />
+        Want breakfast? Don't know what to make? Use the get_breakfast program
+        to get an original breakfast recipe. All you have to do is provide a
+        list of ingredients you have and an AI chatbot, powered by OpenAI, will
+        create a recipe for you!
+        <br />
+        <br />
+        <strong>How it works:</strong>
+        <br />
+        Once a list of ingredients is submitted to the Team 5 GPT web app API,
+        additional text is prepended to the list in order to create a prompt.<br /><br />
+        <strong>User Input:</strong> salmon, bagel, eggs, spinach, peanut butter
+        <br />
+        <strong>Prepended text:</strong> Give me a creative breakfast dish name
+        and a breakfast recipe using only the following ingredients:
+        <br /><br />
+        The resulting prompt comes out to the following...<br />
+        <strong
+          >Give me a creative breakfast dish name and a breakfast recipe using
+          only the following ingredients: salmon, bagel, eggs, spinach, peanut
+          butter</strong
+        ><br /><br />
+        After the prompt is created, it is sent to OpenAI's ChatGPT API to
+        receive a response. <br />
+        Once the response is received, the breakfast recipe is shown the the
+        user.<br /><br />
+        <strong>Sample Output:</strong>
+        <div class="recipeTxt2">
+          <pre>
+Salmon-Egg Bagelwich
+
+Ingredients:
+
+-1 Bagel, cut in half
+-2 eggs
+-3 ounces of cooked salmon
+-1 tablespoon of peanut butter
+-1 handful of spinach
+
+Instructions:
+
+1. Preheat a skillet over medium heat.
+
+2. Spread the peanut butter on one side of the bagel and set aside.
+
+3. Crack the eggs into the skillet and cook until the whites are set, about 2 minutes.
+
+4. Place the cooked eggs on the peanut butter side of the bagel.
+
+5. Top with the cooked salmon and spinach.
+
+6. Place the other half of the bagel on top of the egg, salmon and spinach.
+
+7. Cut in half and enjoy!
+          </pre>
+        </div>
+      </div>
+      <a href="/get_breakfast">
+        <div id="minsungNavBtn">Try it out!</div>
+      </a>
+    </div>
+    <div class="bottomNav">
+      <a href="/minsung_home">
+        <div id="minsungNavBtn">Go Back</div>
+      </a>
+    </div>
+  </body>
+</html>

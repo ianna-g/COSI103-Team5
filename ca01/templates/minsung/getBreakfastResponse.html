@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>cs103spr2023</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='stylesheets/minsungHome.css') }}"
+    />
+  </head>
+  <body>
+    <h1>get_breakfast</h1>
+    <div class="mainContainer">
+      <div class="mainTxt">Ingredients:</div>
+      <div class="recipeTxt2">{{ data.prompt }}</div>
+      <div class="mainTxt">Recipe:</div>
+      <div class="recipeTxt">
+        <pre>{{ data.response }}</pre>
+      </div>
+      <a href="/get_breakfast">
+        <div id="minsungNavBtn">Generate Another Recipe</div>
+      </a>
+    </div>
+    <div class="bottomNav">
+      <a href="/minsung_home">
+        <div id="minsungNavBtn">Go to MinSung</div>
+      </a>
+    </div>
+  </body>
+</html>
