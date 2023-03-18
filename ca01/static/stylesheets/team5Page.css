@@ -1,5 +1,5 @@
-#teamMembersContainer {
-  /* background-color: red; */
+body {
+  background-color: bisque;
 }
 
 .bioHeader {
@@ -13,6 +13,38 @@
   padding: 15px;
 }
 
+#iannaBio {
+  background-color: rgb(235, 235, 235);
+  margin: 10px;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+#iannaPageBtn {
+  cursor: pointer;
+  background-color: rgb(214, 214, 214);
+  display: inline-block;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  color: black
+}
+
+#iannaNav {
+  margin-left: 2%;
+  margin-right: 2%;
+  width: 100%;
+  text-align: center;
+}
+nav a{
+  background-color: whitesmoke;
+  padding: 10px;
+  display: inline-block;
+  font-family: cursive;
+  border-style: dashed;
+  width: 30%;
+}
 #minsungPageBtn {
   cursor: pointer;
   background-color: rgb(214, 214, 214);
@@ -30,4 +62,8 @@
 
 body {
   font-family: Verdana, Arial, sans-serif;
+}
+
+h1{
+  text-align: center;
 }

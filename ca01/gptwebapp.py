@@ -94,6 +94,32 @@ def get_optimize():
     
 # ----------------------------------------------------------------- #
 
+# ------------------- Ianna's routes for ca01 ------------------- #
+# homepage route
+@app.route('/ianna_home')
+def ianna_home():
+  return render_template("/ianna/iannaHome.html")
+
+# about page for dinner
+@app.route('/dinner_description')
+def get_dinner_description():
+  return render_template("/ianna/dinnerDescription.html")
+
+# route to try out get_optimize
+@app.route('/dinner_menu', methods = ['GET', 'POST'])
+def dinner_menu():
+  if request.method == 'POST':
+    prompt = request.form['prompt']
+    answer = gptAPI.getDinner(prompt)
+    data = { "prompt": prompt, "response": answer }
+    #display plausible dinner
+    return render_template("/ianna/dinnerDish.html", data = data)
+  else:
+    #user types in the ingredients they have
+    return render_template("/ianna/dinner_recipe.html")
+    
+# ----------------------------------------------------------------- #
+
 if __name__=='__main__':
   # run the code on port 5001, MacOS uses port 5000 for its own service :(
   app.run(debug=True,port=5001)

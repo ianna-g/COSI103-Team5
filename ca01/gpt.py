@@ -17,8 +17,8 @@ On Windows:
 % $env:APIKEY="....." # in powershell
 % python gpt.py
 '''
-import openai
 
+import openai
 
 class GPT():
   ''' make queries to gpt from a given API '''
@@ -67,9 +67,23 @@ class GPT():
     return response
   # ----------------------------------------------- #
 
+  def getDinner(self, prompt):
+    modified_prompt = "create a dinner dish using these ingredients: " + prompt
+    completion = openai.Completion.create(
+      engine = self.model_engine,
+      prompt = modified_prompt,
+      max_tokens = 1024,
+      n = 1,
+      stop = None,
+      temperature = .5
+    )
+    response = completion.choices[0].text
+    return response
+
 if __name__=='__main__':
   '''
   '''
   import os
   g = GPT(os.environ.get("APIKEY"))
   print(g.getResponse("what does openai's GPT stand for?"))
+  print(g.getResponse("make a recipie with shrimp and noodles"))
