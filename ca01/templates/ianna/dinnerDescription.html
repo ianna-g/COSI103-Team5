@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='stylesheets/team5Page.css') }}"
+  />
+</head>
+<body>
+    <h1> What's for Dinner?</h1>
+    <p> I'm assuming that since you have come to my page, you need ideas on what to cook for dinner. You have come to the right place! </p>
+<h5> complete this form by type in the ingredients that you have and the dinner items you have and we will generate a dish for you</h5>
+    <form method="post" action = "/dinner_menu">
+        <textarea name="prompt"></textarea>
+        <input type="submit" value="Get Dish" />
+      </form>
+</body>
+</html>
