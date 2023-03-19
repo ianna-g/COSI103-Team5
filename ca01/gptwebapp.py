@@ -135,7 +135,7 @@ def get_lunch_description():
 def get_lunch_recipe():
   if request.method == 'POST':
     prompt = request.form['prompt']
-    answer = gptAPI.get_lunch_recipe(prompt)
+    answer = gptAPI.getLunch(prompt)
     data = { "prompt": prompt, "response": answer }
     return render_template("/shaithea/lunchRecipe.html", data = data)
   else:
