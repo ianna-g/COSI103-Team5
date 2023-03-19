@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <title>cs103spr2023</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='stylesheets/roseHome.css') }}"
+    />
+  </head>
+  <body>
+    <h1>get_dessert (about)</h1>
+    You gave the following ingredients:
+    <pre>{{ data.prompt }}</pre>
+    Here is a dessert recipe using those ingredients:
+    <pre>{{ data.response }}</pre>
+    <a href="/get_dessert">Make another dessert?</a>
+    <a href="/rose_home">
+      <div>Go Back</div>
+    </a>
+  </body>
+</html>
