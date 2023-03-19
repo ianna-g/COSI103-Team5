@@ -45,6 +45,13 @@ nav a{
   border-style: dashed;
   width: 30%;
 }
+
+#instructions{
+  display: inline-block;
+}
+body img {
+  float: right;
+}
 #minsungPageBtn {
   cursor: pointer;
   background-color: rgb(214, 214, 214);
