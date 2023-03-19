@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>cs103spr2023</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='stylesheets/roseHome.css') }}"
+    />
+  </head>
+  <body>
+    <h1>get_dessert</h1>
+    Provide a list of ingredients to get a (hopefully) tasty dessert!
+    <div>
+      <form method="post">
+        <textarea name="prompt"></textarea>
+        <input type="submit" value="get dessert" />
+      </form>
+    </div>
+    <a href="/rose_home">
+      <div>Go Back</div>
+    </a>
+  </body>
+</html>

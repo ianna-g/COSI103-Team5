@@ -94,6 +94,31 @@ def get_optimize():
     
 # ----------------------------------------------------------------- #
 
+# ------------------- Rose's routes for ca01 ------------------- #
+# homepage route
+@app.route('/rose_home')
+def rose_home():
+  return render_template("/rose/roseHome.html")
+
+# about page for get_dessert
+@app.route('/get_dessert_about')
+def get_dessert_about_page():
+  return render_template("/rose/getDessertAbout.html")
+
+# route to try out get_optimize
+@app.route('/get_dessert', methods = ['GET', 'POST'])
+def get_dessert():
+  if request.method == 'POST':
+    prompt = request.form['prompt']
+    answer = gptAPI.get_dessert(prompt)
+    data = { "prompt": prompt, "response": answer }
+    return render_template("/rose/getDessertResponse.html", data = data)
+  else:
+    return render_template("/rose/getDessertGet.html")
+    
+# ----------------------------------------------------------------- #
+
+
 # ------------------- Ianna's routes for ca01 ------------------- #
 # homepage route
 @app.route('/ianna_home')
