@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>CS103Spring2023</title>
+    <link
+    rel="stylesheet"
+    href="{{url_for('static', filename='stylesheets/team5Page.css')}}"
+    />
+</head>
+
+<body>
+    <h1> Cooking Lunch!</h1>
+    <hr>
+    <p>
+        Do you have random ingredients in your kitchen and don't know what to make for lunch? 
+        You've come to the right place!!
+        We'll help you find a recipe that uses the ingredients you have in your fridge, 
+        all you have to do is type them into our AI chatbot, powered by OpenAI, and we'll give 
+        you a recipe in a jiffy! 
+    </p>
+    <hr>
+    <b>Type in the ingredients you have in your kitchen and we’ll find you a fantastic recipe!</b>
+
+    <!-- <form action="/action_page.php">
+        <label for="ingredients"></label><br>
+        <input type="text" id="ingredients" name="ingredients" value="(ex. carrots, etc.)"><br>
+        <p></p>
+        <input type="submit" value="Get Recipe!">
+    </form> -->
+
+    <form method="post" action = "/lunch_recipe">
+        <textarea name="prompt" size="50"></textarea>
+        <br>
+        <input type="submit" value="Get Recipe" />
+      </form>
+</body>
+
