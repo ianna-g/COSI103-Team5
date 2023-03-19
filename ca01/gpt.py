@@ -81,7 +81,20 @@ class GPT():
     response = completion.choices[0].text
     return response
   # ----------------------------------------------- #
-
+  def getLunch(self, prompt):
+    modified_prompt = "please give me a lunch recipe with a unique name (use a pun if possible) using only the following ingredients, thank you!:  " + prompt
+    completion = openai.Completion.create(
+      engine = self.model_engine,
+      prompt = modified_prompt,
+      max_tokens = 1024,
+      n = 1,
+      stop = None,
+      temperature = .5
+    )
+    response = completion.choices[0].text
+    return response
+  # ----------------------------------------------- #
+  # ----------------------------------------------- #
   def getDinner(self, prompt):
     modified_prompt = "create a dinner dish using these ingredients: " + prompt
     completion = openai.Completion.create(

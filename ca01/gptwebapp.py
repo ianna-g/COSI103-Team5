@@ -144,6 +144,29 @@ def dinner_menu():
     return render_template("/ianna/dinner_recipe.html")
     
 # ----------------------------------------------------------------- #
+# ------------------- shaithea routes for ca01 ------------------- #
+# homepage route
+@app.route('/shaithea_home')
+def shaithea_home():
+  return render_template("/shaithea/shaitheaHome.html")
+
+# about page for get_lunch_recipe
+@app.route('/lunch_description')
+def get_lunch_description():
+  return render_template("/shaithea/getLunchRecipeDescription.html")
+
+# route to try get_lunch_recipe
+@app.route('/lunch_recipe', methods = ['GET', 'POST'])
+def get_lunch_recipe():
+  if request.method == 'POST':
+    prompt = request.form['prompt']
+    answer = gptAPI.getLunch(prompt)
+    data = { "prompt": prompt, "response": answer }
+    return render_template("/shaithea/lunchRecipe.html", data = data)
+  else:
+    return render_template("/shaithea/getLunchRecipe.html")
+    
+# ----------------------------------------------------------------- #
 
 if __name__=='__main__':
   # run the code on port 5001, MacOS uses port 5000 for its own service :(
