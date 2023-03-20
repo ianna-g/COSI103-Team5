@@ -74,6 +74,10 @@ nav a{
 body img {
   float: right;
 }
+
+#im{
+  float: none;
+}
 #minsungPageBtn {
   cursor: pointer;
   background-color: rgb(214, 214, 214);
