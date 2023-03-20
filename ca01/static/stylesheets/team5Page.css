@@ -107,6 +107,10 @@ body img {
   color: black
 }
 
+#shaitheaPageBtn:hover{
+  background-color: rgb(192, 192, 192);
+}
+
 body {
   font-family: Verdana, Arial, sans-serif;
 }
