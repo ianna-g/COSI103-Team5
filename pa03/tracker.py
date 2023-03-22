@@ -1,8 +1,5 @@
-import sqlite3
-import sys
-import os
-
-
+# Rose
+# Prints out all the commands the user should be able to use
 def print_commands():
     ''' Print all available commands. '''
     print('''0. quit
@@ -18,72 +15,80 @@ def print_commands():
     10. summarize transactions by category
     11. print this menu''')
 
-def print_todos(todos):
-    ''' print the todo items '''
-    for item in todos:
-            print("item #%-3s: %-10s %30s %2d"%item)
-
+# Rose
+# Input: user input split by whitespace
+# Processes the argument list from the user's input and performs an sql command on the database using that input
+# I feel like there's a better way to parse these commands. Feel free to change this
+# TODO add calls to transaction to change the database
 def process_args(arglist):
+    # blank input
     if arglist==[]:
         print_commands()
+    # quit
     elif arglist[0]=="quit":
         return
+    # show categories/transactions
     elif arglist[0]=="show":
         if len(arglist)!= 2:
             print_commands()
         elif arglist[1]=="categories":
-            '''TODO add sql command'''
+            '''TODO add transaction.py call'''
         elif arglist[1]=="transactions":
-            '''TODO add sql command'''
+            '''TODO add transaction.py call'''
         else:
             print(arglist,"is not implemented")
             print_commands()
+    # add category/transaction
     elif arglist[0]=="add":
         if len(arglist)!= 2:
             print_commands()
         elif arglist[1]=="category":
-            '''TODO add sql command'''
+            '''TODO add transaction.py call'''
         elif arglist[1]=="transaction":
-            '''TODO add sql command'''
+            '''TODO add transaction.py call'''
         else:
             print(arglist,"is not implemented")
             print_commands()
+    # modify category
     elif arglist[0]=="modify":
         if len(arglist)!= 2:
             print_commands()
         elif arglist[1]=="category":
-            '''TODO add sql command'''
+            '''TODO add transaction.py call'''
         else:
             print(arglist,"is not implemented")
             print_commands()
+    # delte transaction
     elif arglist[0]=="delete":
         if len(arglist)!= 2:
             print_commands()
         elif arglist[1]=="transaction":
-            '''TODO add sql command'''
+            '''TODO add transaction.py call'''
         else:
             print(arglist,"is not implemented")
             print_commands()
+    # summarize transactions by date/month/year/category
     elif arglist[0]=="summarize":
         if len(arglist)!= 4:
             print_commands()
         if arglist[1]=="transactions" and arglist[2]=="by":
             if arglist[3]=="date":
-                '''TODO add sql command'''
+                '''TODO add transaction.py call'''
             elif arglist[3]=="month":
-                '''TODO add sql command'''
+                '''TODO add transaction.py call'''
             elif arglist[3]=="year":
-                '''TODO add sql command'''
+                '''TODO add transaction.py call'''
             elif arglist[3]=="category":
-                '''TODO add sql command'''
+                '''TODO add transaction.py call'''
             else:
                 print(arglist,"is not implemented")
                 print_commands()
         else:
             print(arglist,"is not implemented")
             print_commands()
+    # print this menu
     elif len(arglist) == 3 and arglist[0]=="print" and arglist[1]=="this" and arglist[2]=="menu":
-        '''TODO add sql command'''
+        '''TODO add transaction.py call'''
     else:
         print(arglist,"is not implemented")
         print_commands()
@@ -99,16 +104,7 @@ cur = con.cursor()
 cur.execute('''CREATE TABLE IF NOT EXISTS todo
                     (title text, desc text, completed int)''')
 
-if len(sys.argv)==1:
-    # they didn't pass any arguments, so prompt for them:
-    print_usage()
-    args = input("command> ").split(" ")
-else:
-    args = sys.argv[1:]
-# now we can get process the arguments
-process_args(args)
 
 # and finally we commit our changes and close the connection
 con.commit()
 con.close()
-"""
