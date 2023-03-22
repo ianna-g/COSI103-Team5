@@ -1,6 +1,6 @@
 # Rose
 # Prints out all the commands the user should be able to use
-def print_commands():
+def print_this_menu():
     ''' Print all available commands. '''
     print('''0. quit
     1. show categories
@@ -22,55 +22,57 @@ def print_commands():
 # TODO add calls to transaction to change the database
 def process_args(arglist):
     # blank input
+    transactions = Transaction("tracker.db")
+
     if arglist==[]:
-        print_commands()
+        print_this_menu()
     # quit
     elif arglist[0]=="quit":
         return
     # show categories/transactions
     elif arglist[0]=="show":
         if len(arglist)!= 2:
-            print_commands()
+            print_this_menu()
         elif arglist[1]=="categories":
-            '''TODO add transaction.py call'''
+            transactions.show_categories()
         elif arglist[1]=="transactions":
-            '''TODO add transaction.py call'''
+            transactions.show_transactions()
         else:
             print(arglist,"is not implemented")
-            print_commands()
+            print_this_menu()
     # add category/transaction
     elif arglist[0]=="add":
         if len(arglist)!= 2:
-            print_commands()
+            print_this_menu()
         elif arglist[1]=="category":
             '''TODO add transaction.py call'''
         elif arglist[1]=="transaction":
             '''TODO add transaction.py call'''
         else:
             print(arglist,"is not implemented")
-            print_commands()
+            print_this_menu()
     # modify category
     elif arglist[0]=="modify":
         if len(arglist)!= 2:
-            print_commands()
+            print_this_menu()
         elif arglist[1]=="category":
             '''TODO add transaction.py call'''
         else:
             print(arglist,"is not implemented")
-            print_commands()
-    # delte transaction
+            print_this_menu()
+    # delete transaction
     elif arglist[0]=="delete":
         if len(arglist)!= 2:
-            print_commands()
+            print_this_menu()
         elif arglist[1]=="transaction":
             '''TODO add transaction.py call'''
         else:
             print(arglist,"is not implemented")
-            print_commands()
+            print_this_menu()
     # summarize transactions by date/month/year/category
     elif arglist[0]=="summarize":
         if len(arglist)!= 4:
-            print_commands()
+            print_this_menu()
         if arglist[1]=="transactions" and arglist[2]=="by":
             if arglist[3]=="date":
                 '''TODO add transaction.py call'''
@@ -82,17 +84,17 @@ def process_args(arglist):
                 '''TODO add transaction.py call'''
             else:
                 print(arglist,"is not implemented")
-                print_commands()
+                print_this_menu()
         else:
             print(arglist,"is not implemented")
-            print_commands()
+            print_this_menu()
     # print this menu
     elif len(arglist) == 3 and arglist[0]=="print" and arglist[1]=="this" and arglist[2]=="menu":
         '''TODO add transaction.py call'''
     else:
         print(arglist,"is not implemented")
-        print_commands()
-
+        print_this_menu()
+        
 """
 # here is where we run the script
 # first we get a connection to the database
