@@ -14,10 +14,17 @@ class Transaction:
         self.filename = filename
 
     # TODO check that this is right.
-    def runQuery(self,query):
+    def runQuery(self, query, placeholder_values):
         # We want to edit the database that this object has the file name to
-        con= sqlite3.connect(os.getenv('HOME')+self.filename)
+        con= sqlite3.connect(self.filename)
         cur = con.cursor() 
-        cur.execute(query)
+        cur.execute(query, placeholder_values)
         con.commit()
         con.close()
+    
+    def add_transaction(self, details):
+        ''' Add transaction entry '''
+        return self.runQuery("INSERT INTO transactions (amount, category, date, description) VALUES(?,?,?,?);", (details["amount"], details["category"], details["date"], details["description"]))
+
+    def show_transactions(self):
+        return self.runQuery("SELECT * FROM transactions;", ())

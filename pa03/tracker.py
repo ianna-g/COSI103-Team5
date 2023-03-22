@@ -88,6 +88,7 @@ def process_args(arglist):
         print(arglist,"is not implemented")
         print_commands()
 
+"""
 # here is where we run the script
 # first we get a connection to the database
 con= sqlite3.connect(os.getenv('HOME')+'/todo.db')
@@ -110,3 +111,4 @@ process_args(args)
 # and finally we commit our changes and close the connection
 con.commit()
 con.close()
+"""
