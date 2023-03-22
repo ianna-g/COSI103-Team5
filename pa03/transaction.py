@@ -10,6 +10,7 @@ import os
 
 class Transaction:
 
+    # initializes a transaction object. filename should lead to the db file we want this transaction object to be linked to
     def __init__(self, filename):
         self.filename = filename
 
