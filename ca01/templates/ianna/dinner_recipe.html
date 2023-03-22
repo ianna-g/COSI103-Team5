@@ -12,19 +12,28 @@
 </head>
 <body>
     <h1> What's for Dinner?</h1>
-    <p> I'm assuming that since you have come to my page, you need ideas on what to cook for dinner. Well guess what...you have come to the right place! </p>
-    <h5> Complete this form below and we will generate a dish for you!</h5>
-    <p>Here is how it works:</p>
-    <p> There is an AI robot called chatgpt which is able to answer a myriad of questions and generate responses for users. This page is connected 
-        to chat gpt and is therefore able to answer your questions related to plausible dishes to make for dinner. If you are running out of ideas
-        or are just unsure of how to mix two ingedients to make a dish, just type in the ingredients you have and we will generate a dish with 
-        some instructions on how to cook it. 
-    </p>
-    <h5> Try it! Type in shrimp and garlic and see what dish chat GPT generates for you. Once you are done come back and try it again with 
-    the ingredients you have</h5>
+    <p> Glad you came back!!! </p>
+
+    
+    <img src= "https://www.spoonforkbacon.com/wp-content/uploads/2021/02/dinner-recipes.jpg" id = "im" alt=" Dinner options" style="width:25%;height:15%;">
+   <br>
+   <h4>It is simple! Just type in the ingredients you have and we will generate a plausible dish you can cook along with 
+    some instructions on how to cook it. </h4>
+    <h5> Complete the form below and we will generate a dish for you!</h5>
     <form method="post" action = "/dinner_menu">
         <textarea name="prompt" size="50"></textarea>
         <input type="submit" value="Get Dish" />
       </form>
+      <div class="bottomNav">
+        <a href="/team_5_page">
+          <div id="minsungNavBtn">Go Back to Team Page</div>
+        </a>
+      </div>
+      <div class="bottomNav">
+        <a href="/">
+          <div id="minsungNavBtn">Go Back to Home Page</div>
+        </a>
+      </div>
+
 </body>
 </html>
