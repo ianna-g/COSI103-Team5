@@ -1,6 +1,11 @@
-# Rose
-# Prints out all the commands the user should be able to use
-def print_this_menu():
+"""
+Tracker Interface
+allows users to perform CRUD operations on transactions database
+"""
+from transaction import *
+import datetime
+
+def print_commands():
     ''' Print all available commands. '''
     print('''0. quit
     1. show categories
@@ -15,98 +20,106 @@ def print_this_menu():
     10. summarize transactions by category
     11. print this menu''')
 
-# Rose
-# Input: user input split by whitespace
-# Processes the argument list from the user's input and performs an sql command on the database using that input
-# I feel like there's a better way to parse these commands. Feel free to change this
-# TODO add calls to transaction to change the database
-def process_args(arglist):
-    # blank input
-    transactions = Transaction("tracker.db")
-
-    if arglist==[]:
-        print_this_menu()
-    # quit
-    elif arglist[0]=="quit":
+def print_response(response):
+    ''' print the todo items '''
+    if len(response)==0:
+        print('no tasks to print')
         return
-    # show categories/transactions
-    elif arglist[0]=="show":
-        if len(arglist)!= 2:
-            print_this_menu()
-        elif arglist[1]=="categories":
-            transactions.show_categories()
-        elif arglist[1]=="transactions":
-            transactions.show_transactions()
-        else:
-            print(arglist,"is not implemented")
-            print_this_menu()
-    # add category/transaction
-    elif arglist[0]=="add":
-        if len(arglist)!= 2:
-            print_this_menu()
-        elif arglist[1]=="category":
-            '''TODO add transaction.py call'''
-        elif arglist[1]=="transaction":
-            '''TODO add transaction.py call'''
-        else:
-            print(arglist,"is not implemented")
-            print_this_menu()
-    # modify category
-    elif arglist[0]=="modify":
-        if len(arglist)!= 2:
-            print_this_menu()
-        elif arglist[1]=="category":
-            '''TODO add transaction.py call'''
-        else:
-            print(arglist,"is not implemented")
-            print_this_menu()
-    # delete transaction
-    elif arglist[0]=="delete":
-        if len(arglist)!= 2:
-            print_this_menu()
-        elif arglist[1]=="transaction":
-            '''TODO add transaction.py call'''
-        else:
-            print(arglist,"is not implemented")
-            print_this_menu()
-    # summarize transactions by date/month/year/category
-    elif arglist[0]=="summarize":
-        if len(arglist)!= 4:
-            print_this_menu()
-        if arglist[1]=="transactions" and arglist[2]=="by":
-            if arglist[3]=="date":
-                '''TODO add transaction.py call'''
-            elif arglist[3]=="month":
-                '''TODO add transaction.py call'''
-            elif arglist[3]=="year":
-                '''TODO add transaction.py call'''
-            elif arglist[3]=="category":
-                '''TODO add transaction.py call'''
-            else:
-                print(arglist,"is not implemented")
-                print_this_menu()
-        else:
-            print(arglist,"is not implemented")
-            print_this_menu()
-    # print this menu
-    elif len(arglist) == 3 and arglist[0]=="print" and arglist[1]=="this" and arglist[2]=="menu":
-        '''TODO add transaction.py call'''
+    print('\n')
+    print("%-10s %-10s %-30s %-10s"%('amount','category','date','description'))
+    print('-'*40)
+    for item in response:
+        values = tuple(item.values()) #(amount,category,date,description)
+        print("%-10s %-10s %-30s %2d"%values)
+
+def validate_date(date):
+  try:
+    datetime.date.fromisoformat(date)
+    return True
+  except ValueError:
+    return False
+    
+
+def add_transaction(transaction):
+  invalid = True
+  while invalid:
+    print("Enter transaction details (amount;category;date(YYYY-MM-DD);description):")
+    details_str = input()
+    details_arr = details_str.split(";")
+    try:
+      if len(details_arr) < 4 or len(details_arr) > 4:
+        print("!!! Missing or Extraneous Entry Items !!!")
+        raise ValueError
+      
+      amount = float(details_arr[0])
+      if amount <= 0:
+        print("!!! Invalid Amount !!!")
+        raise ValueError
+
+      category = details_arr[1].strip().lower()
+
+      date_str = details_arr[2].replace(" ", "")
+      if validate_date(date_str) is False:
+        print("!!! Invalid Date !!!")
+        raise ValueError
+      date = date_str
+
+      description = details_arr[3].strip()
+
+      details = { 'amount': amount, 'category': category, 'date': date, 'description': description }
+    except ValueError:
+      print("!!!!!!!!!!!!!!!!!!!!!")
     else:
-        print(arglist,"is not implemented")
-        print_this_menu()
-        
+        print(details)
+        transaction.add_transaction(details)
+        invalid = False
+
+
 """
-# here is where we run the script
-# first we get a connection to the database
-con= sqlite3.connect(os.getenv('HOME')+'/todo.db')
-cur = con.cursor()
-
-# then we create the todo table if it doesn't exist
-# and for completed we use 0 for False and 1 for True, as sqlite has not booleans
-cur.execute('''CREATE TABLE IF NOT EXISTS todo
-                    (title text, desc text, completed int)''')
+REPL 
+Loop to interact with Tracker
+"""
 
 
-# and finally we commit our changes and close the connection
-con.commit()
-con.close()
+
+trans = Transaction(input("Enter filename of database you would like to interact with (omit the .db extension)") + '.db')
+print_commands()
+interface_active = True
+while interface_active:
+    option = input("Enter Option # (11 to view options): ")
+    try:                                  # catch string to integer conversion errors
+      option = int(option)
+    except ValueError:
+        print("!!! Invalid Option # !!!")
+    else:
+      if option < 0 or option > 11:
+        print("!!! Invalid Option # !!!")
+      else:
+        if option == 0:
+          interface_active = False
+        elif option == 1:
+          print("show categories")        # print all categories
+          print_response(trans.show_categories())
+        elif option == 2:
+          print("add category")           
+        elif option == 3:
+          print("modify category")
+        elif option == 4:
+          print_response(trans.show_transactions())
+        elif option == 5:
+          print(add_transaction(trans))
+        elif option == 6:
+          print("delete transaction")
+        elif option == 7:
+          print("summarize transactions by date")
+        elif option == 8:
+          print("summarize transactions by month")
+        elif option == 9:
+          print("summarize transactions by year")
+        elif option == 10:
+          print("summarize transactions by category")
+        else:
+            print("print this menu")
+    
+
+
