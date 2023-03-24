@@ -7,7 +7,8 @@ import datetime
 
 def print_commands():
     ''' Print all available commands. '''
-    print('''0. quit
+    print('''
+    0. quit
     1. show categories
     2. add category
     3. modify category
@@ -18,33 +19,38 @@ def print_commands():
     8. summarize transactions by month
     9. summarize transactions by year
     10. summarize transactions by category
-    11. print this menu''')
+    11. print this menu
+    ''')
 
 def print_response(response):
-    ''' print the todo items '''
+    """ Prints transaction responses with tuple containing diction of transaction details """
     if len(response)==0:
         print('no tasks to print')
         return
-    print('\n')
-    print("%-10s %-10s %-30s %-10s"%('amount','category','date','description'))
-    print('-'*40)
-    for item in response:
-        values = tuple(item.values()) #(amount,category,date,description)
-        print("%-10s %-10s %-30s %2d"%values)
+    print()
+    print("%-10s %-10s %-15s %-15s %-15s"%('item #', 'amount','category','date','description'))
+    print('-'*80)
+    for values in response:
+        values = (str(values['item #']), str(values['amount']), values['category'], values['date'], values['description'])
+        print("%-10s %-10s %-15s %-15s %-15s" % values)
+    print('-'*80)
+    print()
 
 def validate_date(date):
-  try:
-    datetime.date.fromisoformat(date)
-    return True
-  except ValueError:
-    return False
+    """ Verifies whether the given date is in correct format """
+    try:
+        datetime.date.fromisoformat(date)
+        return True
+    except ValueError:
+        return False
     
 
 def add_transaction(transaction):
+  """ Asks to enter transaction details and validates field entries """
   invalid = True
   while invalid:
     print("Enter transaction details (amount;category;date(YYYY-MM-DD);description):")
-    details_str = input()
+    details_str = input("> ")
     details_arr = details_str.split(";")
     try:
       if len(details_arr) < 4 or len(details_arr) > 4:
@@ -70,23 +76,21 @@ def add_transaction(transaction):
     except ValueError:
       print("!!!!!!!!!!!!!!!!!!!!!")
     else:
-        print(details)
         transaction.add_transaction(details)
         invalid = False
-
-
-"""
-REPL 
-Loop to interact with Tracker
-"""
+        print()
+        print("Transaction Entry Successful!")
+        print()
 
 
 
-trans = Transaction(input("Enter filename of database you would like to interact with (omit the .db extension)") + '.db')
+# REPL 
+# Loop to interact with Tracker
+trans = Transaction(input("Enter filename of database you would like to interact with (omit the .db extension): ") + '.db')
 print_commands()
 interface_active = True
 while interface_active:
-    option = input("Enter Option # (11 to view options): ")
+    option = input("Enter Option # (11 to view options) > ")
     try:                                  # catch string to integer conversion errors
       option = int(option)
     except ValueError:
@@ -107,7 +111,7 @@ while interface_active:
         elif option == 4:
           print_response(trans.show_transactions())
         elif option == 5:
-          print(add_transaction(trans))
+          add_transaction(trans)
         elif option == 6:
           print("delete transaction")
         elif option == 7:
@@ -119,7 +123,7 @@ while interface_active:
         elif option == 10:
           print("summarize transactions by category")
         else:
-            print("print this menu")
+            print_commands()
     
 
 
