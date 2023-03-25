@@ -22,7 +22,7 @@ def print_commands():
     11. print this menu
     ''')
 
-def print_transactions(response):
+def print_transactions(response, database):
     """ Prints transaction responses with tuple containing diction of transaction details """
     if len(response)==0:
         print('no transactions to print')
@@ -31,7 +31,7 @@ def print_transactions(response):
     print("%-10s %-10s %-15s %-15s %-15s"%('item #', 'amount','category','date','description'))
     print('-'*80)
     for values in response:
-        values = (str(values['item #']), str(values['amount']), str(values['category']), values['date'], values['description'])
+        values = (str(values['item #']), str(values['amount']), database.get_category(int(values['category'])), values['date'], values['description'])
         print("%-10s %-10s %-15s %-15s %-15s" % values)
     print('-'*80)
     print()
@@ -44,7 +44,8 @@ def validate_date(date):
     except ValueError:
         return False
 
-def print_sum_by_date(response):
+##################### Customized print tables for the summarize commands #####################
+def print_sum_by_date(response, database):
     """ prints summary of transactions by date """
     if len(response) == 0:
         print('no transactions to summarize')
@@ -53,12 +54,12 @@ def print_sum_by_date(response):
     print("%-13s %-10s %-20s %-20s"%('date', 'category','# of transactions','sum of transaction amounts'))
     print('-'*75)
     for values in response:
-        values = (str(values['date']), str(values['category']), str(values['# of transactions']), values['sum of transaction amounts'])
+        values = (str(values['date']), database.get_category(int(values['category'])), str(values['# of transactions']), values['sum of transaction amounts'])
         print("%-13s %-10s %-20s %-20s" % values)
     print('-'*75)
     print()
 
-def print_sum_by_month(response):
+def print_sum_by_month(response, database):
     """ prints summary of transactions by month """
     if len(response) == 0:
         print('no transactions to summarize')
@@ -67,12 +68,12 @@ def print_sum_by_month(response):
     print("%-13s %-10s %-20s %-20s"%('month', 'category','# of transactions','sum of transaction amounts'))
     print('-'*75)
     for values in response:
-        values = (str(values['month']), str(values['category']), str(values['# of transactions']), values['sum of transaction amounts'])
+        values = (str(values['month']), database.get_category(int(values['category'])), str(values['# of transactions']), values['sum of transaction amounts'])
         print("%-13s %-10s %-20s %-20s" % values)
     print('-'*75)
     print()
 
-def print_sum_by_year(response):
+def print_sum_by_year(response, database):
     """ prints summary of transactions by year """
     if len(response) == 0:
         print('no transactions to summarize')
@@ -81,12 +82,12 @@ def print_sum_by_year(response):
     print("%-13s %-10s %-20s %-20s"%('year', 'category','# of transactions','sum of transaction amounts'))
     print('-'*75)
     for values in response:
-        values = (str(values['year']), str(values['category']), str(values['# of transactions']), values['sum of transaction amounts'])
+        values = (str(values['year']), database.get_category(int(values['category'])), str(values['# of transactions']), values['sum of transaction amounts'])
         print("%-13s %-10s %-20s %-20s" % values)
     print('-'*75)
     print()
 
-def print_sum_by_category(response):
+def print_sum_by_category(response, database):
     """ prints summary of transactions by category """
     if len(response) == 0:
         print('no transactions to summarize')
@@ -95,10 +96,11 @@ def print_sum_by_category(response):
     print("%-10s %-15s %-20s %-30s %-20s"%('category','date','# of transactions','avg of transaction amounts','sum of transaction amounts'))
     print('-'*110)
     for values in response:
-        values = (str(values['category']), str(values['date']), str(values['# of transactions']), str(values['avg of transaction amounts']), str(values['sum of transaction amounts']))
+        values = (database.get_category(int(values['category'])), str(values['date']), str(values['# of transactions']), str(values['avg of transaction amounts']), str(values['sum of transaction amounts']))
         print("%-10s %-15s %-20s %-30s %-20s" % values)
     print('-'*110)
     print()
+##############################################################################################
 
 def print_categories(response):
     """ prints all categories in categories table """
@@ -221,7 +223,7 @@ while interface_active:
                 print("modify category")
             elif option == 4:
                 print("Transactions")
-                print_transactions(trans.show_transactions())
+                print_transactions(trans.show_transactions(), trans)
             elif option == 5:
                 print("Add Transaction")
                 add_transaction(trans)
@@ -229,15 +231,15 @@ while interface_active:
                 print("delete transaction")
             elif option == 7:
                 print("summarize transactions by date")
-                print_sum_by_date(trans.sum_by_date())
+                print_sum_by_date(trans.sum_by_date(), trans)
             elif option == 8:
                 print("summarize transactions by month")
-                print_sum_by_month(trans.sum_by_month())
+                print_sum_by_month(trans.sum_by_month(), trans)
             elif option == 9:
                 print("summarize transactions by year")
-                print_sum_by_year(trans.sum_by_year())
+                print_sum_by_year(trans.sum_by_year(), trans)
             elif option == 10:
                 print("summarize transactions by category")
-                print_sum_by_category(trans.sum_by_category())
+                print_sum_by_category(trans.sum_by_category(), trans)
             else:
                 print_commands()

@@ -50,7 +50,6 @@ class Transaction:
         con.commit()
         con.close()
         print(tuples)
-        # TODO check that this returns the category names
         return [toDictCategories(c) for c in tuples]
 
     # Run this method if you want to query through the main table
@@ -136,6 +135,16 @@ class Transaction:
     
     def show_categories(self):
         return self.runCategoryQuery("SELECT * FROM categories;", ())
+    
+    # Used to get the category name from the integer value
+    def get_category(self, index):
+        con= sqlite3.connect(os.getenv('HOME') + "/" + self.filename)
+        cur = con.cursor() 
+        cur.execute("SELECT DISTINCT name FROM categories WHERE id = ?", (index,))
+        name = cur.fetchall()[0][0]
+        con.commit()
+        con.close()
+        return name
 ###############################################
 
 ################## Ianna ######################
