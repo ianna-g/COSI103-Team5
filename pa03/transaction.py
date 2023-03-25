@@ -3,29 +3,41 @@ import os
 
 def toDictTransactions(t):
     ''' t is a tuple (rowid, item #, amount, category, date, description)'''
-    # TODO The lesson 19 code came with this print line, I don't know if we want it or not
-    # print('t='+str(t))
-    # TODO check that this works
     transaction = {'item #': t[0], 'amount': t[1], 'category': t[2], 'date': t[3], 'description': t[4]}
     return transaction
 
 def toDictCategories(c):
     ''' t is a tuple (rowid, item #, amount, category, date, description)'''
-    # TODO The lesson 19 code came with this print line, I don't know if we want it or not
-    # print('t='+str(t))
-    # TODO check that this works
     category = { 'id': c[0], 'name': c[1] }
     return category
+
+def toDictSumByDate(t):
+    ''' t is a tuple (date, category, # of transactions, sum of transaction amounts)'''
+    summary = {'date': t[0], 'category': t[1], '# of transactions': t[2], 'sum of transaction amounts': t[3]}
+    return summary
+
+def toDictSumByMonth(t):
+    ''' t is a tuple (month, category, # of transactions, sum of transaction amounts)'''
+    summary = {'month': t[0], 'category': t[1], '# of transactions': t[2], 'sum of transaction amounts': t[3]}
+    return summary
+
+def toDictSumByYear(t):
+    ''' t is a tuple (year, category, # of transactions, sum of transaction amounts)'''
+    summary = {'year': t[0], 'category': t[1], '# of transactions': t[2], 'sum of transaction amounts': t[3]}
+    return summary
+
+def toDictSumByCategory(t):
+    ''' t is a tuple (category, date, # of transactions, avg of transaction amounts, sum of transaction amounts)'''
+    summary = {'category': t[0], 'date': t[1], '# of transactions': t[2], 'avg of transaction amounts': t[3], 'sum of transaction amounts': t[4]}
+    return summary
 
 class Transaction:
     # initializes a transaction object. filename should lead to the db file we want this transaction object to be linked to
     def __init__(self, filename):
         self.filename = filename
-        # ERROR HERE, I think there is a syntax error in this line?
         self.runQuery('''CREATE TABLE IF NOT EXISTS transactions
                     (id INTEGER PRIMARY KEY AUTOINCREMENT, amount real, category integer, date text, description text)''',())
         # This initializes an sql database that just has all of the categories for the main database
-        # TODO check that this creates the correct table
         self.runCategoryQuery('''CREATE TABLE IF NOT EXISTS categories
                     (id INTEGER PRIMARY KEY AUTOINCREMENT, name text)''',())
     
@@ -51,6 +63,46 @@ class Transaction:
         con.commit()
         con.close()
         return [toDictTransactions(t) for t in tuples]
+    
+    # Used to print out sum by date
+    def runQuerySumByDate(self,query,tuple):
+        con= sqlite3.connect(os.getenv('HOME') + "/" + self.filename)
+        cur = con.cursor()
+        cur.execute(query,tuple)
+        tuples = cur.fetchall()
+        con.commit()
+        con.close()
+        return [toDictSumByDate(t) for t in tuples]
+    
+    # Used to print out sum by month
+    def runQuerySumByMonth(self,query,tuple):
+        con= sqlite3.connect(os.getenv('HOME') + "/" + self.filename)
+        cur = con.cursor()
+        cur.execute(query,tuple)
+        tuples = cur.fetchall()
+        con.commit()
+        con.close()
+        return [toDictSumByMonth(t) for t in tuples]
+    
+    # Used to print out sum by year
+    def runQuerySumByYear(self,query,tuple):
+        con= sqlite3.connect(os.getenv('HOME') + "/" + self.filename)
+        cur = con.cursor()
+        cur.execute(query,tuple)
+        tuples = cur.fetchall()
+        con.commit()
+        con.close()
+        return [toDictSumByYear(t) for t in tuples]
+    
+    # Used to print out sum by category
+    def runQuerySumByCategory(self,query,tuple):
+        con= sqlite3.connect(os.getenv('HOME') + "/" + self.filename)
+        cur = con.cursor()
+        cur.execute(query,tuple)
+        tuples = cur.fetchall()
+        con.commit()
+        con.close()
+        return [toDictSumByCategory(t) for t in tuples]
     
     
 ################## MinSung ####################
@@ -92,18 +144,18 @@ class Transaction:
 
     #extract the dates
     def sum_by_date(self):
-        return self.runQuery("SELECT date, cateory, COUNT(amount), SUM(amount) FROM transactions GROUP BY date;")
+        return self.runQuerySumByDate("SELECT date, category, COUNT(amount), SUM(amount) FROM transactions GROUP BY date;", ())
     
         #extract the months 
     def sum_by_month(self):
-        return self.runQuery("SELECT EXTRACT(MONTH FROM date) as month, cateory, COUNT(amount), SUM(amount) FROM transactions GROUP BY month;")
+        return self.runQuerySumByMonth("SELECT EXTRACT(MONTH FROM date) as month, category, COUNT(amount), SUM(amount) FROM transactions GROUP BY month;", ())
     
     #extract the years 
     def sum_by_year(self):
-        return self.runQuery("SELECT EXTRACT(YEAR FROM date) as year, cateory, COUNT(amount), SUM(amount) FROM transactions GROUP BY year;")
+        return self.runQuerySumByYear("SELECT EXTRACT(YEAR FROM date) as year, category, COUNT(amount), SUM(amount) FROM transactions GROUP BY year;", ())
       
     def sum_by_category(self):
-        return self.runQuery("SELECT cateory, date, COUNT(amount), AVG(amount) SUM(amount) FROM transactions GROUP BY category;")
+        return self.runQuerySumByCategory("SELECT category, date, COUNT(amount), AVG(amount), SUM(amount) FROM transactions GROUP BY category;", ())
 
 
 ###############################################

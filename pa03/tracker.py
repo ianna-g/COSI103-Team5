@@ -25,7 +25,7 @@ def print_commands():
 def print_transactions(response):
     """ Prints transaction responses with tuple containing diction of transaction details """
     if len(response)==0:
-        print('no tasks to print')
+        print('no transactions to print')
         return
     print()
     print("%-10s %-10s %-15s %-15s %-15s"%('item #', 'amount','category','date','description'))
@@ -43,11 +43,67 @@ def validate_date(date):
         return True
     except ValueError:
         return False
-    
+
+def print_sum_by_date(response):
+    """ prints summary of transactions by date """
+    if len(response) == 0:
+        print('no transactions to summarize')
+        return
+    print()
+    print("%-13s %-10s %-20s %-20s"%('date', 'category','# of transactions','sum of transaction amounts'))
+    print('-'*75)
+    for values in response:
+        values = (str(values['date']), str(values['category']), str(values['# of transactions']), values['sum of transaction amounts'])
+        print("%-13s %-10s %-20s %-20s" % values)
+    print('-'*75)
+    print()
+
+def print_sum_by_month(response):
+    """ prints summary of transactions by month """
+    if len(response) == 0:
+        print('no transactions to summarize')
+        return
+    print()
+    print("%-13s %-10s %-20s %-20s"%('month', 'category','# of transactions','sum of transaction amounts'))
+    print('-'*75)
+    for values in response:
+        values = (str(values['month']), str(values['category']), str(values['# of transactions']), values['sum of transaction amounts'])
+        print("%-13s %-10s %-20s %-20s" % values)
+    print('-'*75)
+    print()
+
+def print_sum_by_year(response):
+    """ prints summary of transactions by year """
+    if len(response) == 0:
+        print('no transactions to summarize')
+        return
+    print()
+    print("%-13s %-10s %-20s %-20s"%('year', 'category','# of transactions','sum of transaction amounts'))
+    print('-'*75)
+    for values in response:
+        values = (str(values['year']), str(values['category']), str(values['# of transactions']), values['sum of transaction amounts'])
+        print("%-13s %-10s %-20s %-20s" % values)
+    print('-'*75)
+    print()
+
+def print_sum_by_category(response):
+    """ prints summary of transactions by category """
+    if len(response) == 0:
+        print('no transactions to summarize')
+        return
+    print()
+    print("%-10s %-15s %-20s %-30s %-20s"%('category','date','# of transactions','avg of transaction amounts','sum of transaction amounts'))
+    print('-'*110)
+    for values in response:
+        values = (str(values['category']), str(values['date']), str(values['# of transactions']), str(values['avg of transaction amounts']), str(values['sum of transaction amounts']))
+        print("%-10s %-15s %-20s %-30s %-20s" % values)
+    print('-'*110)
+    print()
+
 def print_categories(response):
     """ prints all categories in categories table """
     if len(response) == 0:
-        print('no tasks to print')
+        print('no categories to print')
         return
     print()
     print("%-20s %-20s"%('index', 'name'))
@@ -62,12 +118,14 @@ def get_category_index(transaction):
     """ asks the user to select a category when creating a transaction """
     index = -1
     invalid = True
-    print("Select category index for transaction: ")
+    print("Select category index for transaction (or -1 to cancel): ")
     existing_cate = transaction.show_categories()
     print_categories(existing_cate)
     while invalid:
         try:
             index = int(input("> "))
+            if(index == -1):
+                return -1
             if index < 1 or index > len(existing_cate):
                 print("!!! That index does not exist !!!")
             else:
@@ -81,6 +139,8 @@ def add_transaction(transaction):
     invalid = True
     while invalid:
         category_index = get_category_index(transaction)
+        if(category_index == -1):
+            return
         print("Enter transaction details (amount;date(YYYY-MM-DD);description):")
         details_str = input("> ")
         details_arr = details_str.split(";")
@@ -169,11 +229,15 @@ while interface_active:
                 print("delete transaction")
             elif option == 7:
                 print("summarize transactions by date")
+                print_sum_by_date(trans.sum_by_date())
             elif option == 8:
                 print("summarize transactions by month")
+                print_sum_by_month(trans.sum_by_month())
             elif option == 9:
                 print("summarize transactions by year")
+                print_sum_by_year(trans.sum_by_year())
             elif option == 10:
                 print("summarize transactions by category")
+                print_sum_by_category(trans.sum_by_category())
             else:
                 print_commands()
