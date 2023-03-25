@@ -85,3 +85,25 @@ class Transaction:
     def show_categories(self):
         return self.runCategoryQuery("SELECT * FROM categories;", ())
 ###############################################
+
+################## Ianna ######################
+
+       # date format (YYYY-MM-DD)
+
+    #extract the dates
+    def sum_by_date(self):
+        return self.runQuery("SELECT date, cateory, COUNT(amount), SUM(amount) FROM transactions GROUP BY date;")
+    
+        #extract the months 
+    def sum_by_month(self):
+        return self.runQuery("SELECT EXTRACT(MONTH FROM date) as month, cateory, COUNT(amount), SUM(amount) FROM transactions GROUP BY month;")
+    
+    #extract the years 
+    def sum_by_year(self):
+        return self.runQuery("SELECT EXTRACT(YEAR FROM date) as year, cateory, COUNT(amount), SUM(amount) FROM transactions GROUP BY year;")
+      
+    def sum_by_category(self):
+        return self.runQuery("SELECT cateory, date, COUNT(amount), AVG(amount) SUM(amount) FROM transactions GROUP BY category;")
+
+
+###############################################
