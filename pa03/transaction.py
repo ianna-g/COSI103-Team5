@@ -2,7 +2,7 @@ import sqlite3
 import os
 
 def toDictTransactions(t):
-    ''' t is a tuple (rowid, item #, amount, category, date, description)'''
+    ''' returns a dictionary of a single Transactions row'''
     # TODO The lesson 19 code came with this print line, I don't know if we want it or not
     # print('t='+str(t))
     # TODO check that this works
@@ -10,7 +10,7 @@ def toDictTransactions(t):
     return transaction
 
 def toDictCategories(c):
-    ''' t is a tuple (rowid, item #, amount, category, date, description)'''
+    ''' returns a dictionary of a single Categories row'''
     # TODO The lesson 19 code came with this print line, I don't know if we want it or not
     # print('t='+str(t))
     # TODO check that this works
