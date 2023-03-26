@@ -162,9 +162,10 @@ class Transaction:
     #extract the years 
     def sum_by_year(self):
         return self.runQuerySumByYear("SELECT EXTRACT(YEAR FROM date) as year, category, COUNT(amount), SUM(amount) FROM transactions GROUP BY year;", ())
-      
+    
+    #based on the category return some data
     def sum_by_category(self):
-        return self.runQuerySumByCategory("SELECT category, date, COUNT(amount), AVG(amount), SUM(amount) FROM transactions GROUP BY category;", ())
+        return self.runQuerySumByCategory("SELECT category, date, COUNT(amount), SUM(amount) FROM transactions GROUP BY category;", ())
 
 
 ###############################################
