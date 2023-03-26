@@ -196,18 +196,21 @@ def add_category(transaction):
             print()
             invalid = False
 
-def delete_transaction(self)
+
+    
+
+def delete_transaction(self):
     id = input("Enter transaction id to delete: ")
     if(self.delete_transaction(id)):
         print(f"Deleted transaction {id}.")
     else:
         print(f"Transaction {id} does not exist.")
 
-def modify_category(self)
+def modify_category(self,transaction):
     category = input("Enter category to modify: ")
     new_category = input("Enter new category name: ")
     if(self.modify_category(category, new_category)):
-        check_category_exists(self, new_category)
+        transaction.check_category_exists(self, new_category)
         print_categories(transaction.show_categories())
         print(f"Modified category {category} to {new_category}.")
     else:
