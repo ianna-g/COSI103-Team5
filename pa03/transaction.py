@@ -168,3 +168,10 @@ class Transaction:
 
 
 ###############################################
+    # deletes a transaction
+    def delete_transaction(self, item_number):
+        return self.runQuery("DELETE FROM transactions WHERE id = ?;", (item_number,))
+
+    # modifies the category of a transaction
+    def modify_category(self, oldName, newName):
+        return self.runQuery("UPDATE transaction SET category = ? WHERE category = ?;", (oldName, newName))
