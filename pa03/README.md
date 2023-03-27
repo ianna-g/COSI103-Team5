@@ -291,6 +291,7 @@ Enter Option # (11 to view options) >
 ```
 
 ## Summary Operations
+```
 (base) iannag@iannas-air pa03 % python3 tracker.py
 Enter filename of database you would like to interact with (omit the .db extension): FinanceTracker.db
 
@@ -355,8 +356,9 @@ category   date            # of transactions    sum of transaction amounts
 5          2010-03-01      2                    80.0                          
 1          2023-05-25      1                    4.0                           
 --------------------------------------------------------------------------------
+```
 ## Modify and Delete Categories Operations
-
+```
 (base) shaithea@Shaitheas-MacBook-Pro pa03 % python create_db.py
 (base) shaithea@Shaitheas-MacBook-Pro pa03 % python tracker.py  
 Enter filename of database you would like to interact with (omit the .db extension): FinanceTracker 
@@ -504,3 +506,4 @@ item #     amount     category        date            description
 --------------------------------------------------------------------------------
 2          1000.0     TECHNOLOGY      2023-05-11      new laptop     
 --------------------------------------------------------------------------------
+```
