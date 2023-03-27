@@ -93,21 +93,12 @@ def print_sum_by_category(response, database):
         print('no transactions to summarize')
         return
     print()
-<<<<<<< HEAD
-    print("%-10s %-15s %-20s %-20s"%('category','date','# of transactions','sum of transaction amounts'))
-    print('-'*110)
-    for values in response:
-        values = (database.get_category(int(values['category'])), str(values['date']), str(values['# of transactions']), str(values['sum of transaction amounts']))
-        print("%-10s %-15s %-20s %-20s" % values)
-    print('-'*110)
-=======
     print("%-10s %-15s %-20s %-30s"%('category','date','# of transactions','sum of transaction amounts'))
     print('-'*80)
     for values in response:
         values = (database.get_category(int(values['category'])), str(values['date']), str(values['# of transactions']), str(values['sum of transaction amounts']))
         print("%-10s %-15s %-20s %-30s" % values)
     print('-'*80)
->>>>>>> c13ae76b5188d42925281e7fa431e393047f6771
     print()
 ##############################################################################################
 

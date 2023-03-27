@@ -13,14 +13,14 @@ my_dict2 = {"amount":4, "category" : 1,  "date": "2023-05-24", "description": "s
 my_dict3 = {"amount":94, "category" : 1,  "date": "2023-12-24", "description": "snacks"}
 my_dict4 = {"amount":200, "category" : 1,  "date": "2023-07-12", "description": "snacks"}
 def test_sum_by_date():
-    t = Transaction("Test50")
+    t = Transaction("Test70")
     t.add_transaction(my_dict)  
     t.add_transaction(my_dict2)  
     expected = [{'date': '2010-03-01', 'category': 2, '# of transactions': 1, 'sum of transaction amounts': 30.0}, {'date': '2023-05-24', 'category': 1, '# of transactions': 1, 'sum of transaction amounts': 4.0}]
     assert t.sum_by_date() == expected
 
 def test_sum_by_month():
-    t = Transaction("Test51")
+    t = Transaction("Test71")
     t.add_transaction(my_dict)  
     t.add_transaction(my_dict1)  
     t.add_transaction(my_dict2)  
@@ -28,7 +28,7 @@ def test_sum_by_month():
     assert t.sum_by_month() == expected
 
 def test_sum_by_year():
-    t = Transaction("Test52")
+    t = Transaction("Test72")
     t.add_transaction(my_dict)  
     t.add_transaction(my_dict1)  
     t.add_transaction(my_dict2)  
@@ -38,7 +38,7 @@ def test_sum_by_year():
     assert t.sum_by_year() == expected
 
 def test_sum_by_category():
-    t = Transaction("Test53")
+    t = Transaction("Test73")
     t.add_transaction(my_dict)  
     t.add_transaction(my_dict1)  
     t.add_transaction(my_dict2)  

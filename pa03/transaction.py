@@ -31,11 +31,7 @@ def toDictSumByYear(t):
 
 # Author: Rose
 def toDictSumByCategory(t):
-<<<<<<< HEAD
-    ''' t is a tuple (category, date, # of transactions, avg of transaction amounts, sum of transaction amounts)'''
-=======
     ''' t is a tuple (category, date, # of transactions, sum of transaction amounts)'''
->>>>>>> c13ae76b5188d42925281e7fa431e393047f6771
     summary = {'category': t[0], 'date': t[1], '# of transactions': t[2], 'sum of transaction amounts': t[3]}
     return summary
 
