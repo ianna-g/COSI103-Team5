@@ -2,7 +2,8 @@
 #Class written by Shaithea
 
 """imports"""
-from transaction import *
+# from transaction import *
+from transaction import Transaction
 
 t = Transaction("testTransaction123")
 t.add_category("Food")
@@ -15,7 +16,6 @@ def test_modify_category():
     categories = t.get_category(1)
     expected = "Snack"
     assert categories == expected
-    
 def test_delete_transaction():
     """ Test for delete_transaction method """
     t.delete_transaction(1)
