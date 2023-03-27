@@ -28,7 +28,7 @@ def toDictSumByYear(t):
 
 def toDictSumByCategory(t):
     ''' t is a tuple (category, date, # of transactions, avg of transaction amounts, sum of transaction amounts)'''
-    summary = {'category': t[0], 'date': t[1], '# of transactions': t[2], 'avg of transaction amounts': t[3], 'sum of transaction amounts': t[4]}
+    summary = {'category': t[0], 'date': t[1], '# of transactions': t[2], 'sum of transaction amounts': t[3]}
     return summary
 
 class Transaction:
@@ -83,6 +83,7 @@ class Transaction:
         tuples = cur.fetchall()
         con.commit()
         con.close()
+        print([toDictSumByMonth(t) for t in tuples])
         return [toDictSumByMonth(t) for t in tuples]
     
     # Used to print out sum by year
@@ -93,6 +94,7 @@ class Transaction:
         tuples = cur.fetchall()
         con.commit()
         con.close()
+        print([toDictSumByYear(t) for t in tuples])
         return [toDictSumByYear(t) for t in tuples]
     
     # Used to print out sum by category
@@ -103,6 +105,7 @@ class Transaction:
         tuples = cur.fetchall()
         con.commit()
         con.close()
+        print([toDictSumByCategory(t) for t in tuples])
         return [toDictSumByCategory(t) for t in tuples]
     
     
@@ -159,11 +162,11 @@ class Transaction:
     
         #extract the months 
     def sum_by_month(self):
-        return self.runQuerySumByMonth("SELECT EXTRACT(MONTH FROM date) as month, category, COUNT(date), SUM(amount) FROM transactions GROUP BY month;", ())
+        return self.runQuerySumByMonth("SELECT strftime('%m', date) AS month, category, COUNT(amount), SUM(amount) FROM transactions GROUP BY month;", ())
     
     #extract the years 
     def sum_by_year(self):
-        return self.runQuerySumByYear("SELECT EXTRACT(YEAR FROM date) as year, category, COUNT(amount), SUM(amount) FROM transactions GROUP BY year;", ())
+        return self.runQuerySumByYear("SELECT strftime('%Y', date) as year, category, COUNT(amount), SUM(amount) FROM transactions GROUP BY year;", ())
     
     #based on the category return some data
     def sum_by_category(self):
