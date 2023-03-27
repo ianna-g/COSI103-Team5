@@ -111,7 +111,7 @@ class Transaction:
     
     def check_category_exists(self, category):
         """ Check if category already exists in categories table """
-        con= sqlite3.connect(os.getenv('HOME') + "/" + self.filename)
+        con = sqlite3.connect(os.getenv('HOME') + "/" + self.filename)
         cur = con.cursor()
         cur.execute("SELECT * FROM categories WHERE name = ?", (category,))
         data = cur.fetchone()

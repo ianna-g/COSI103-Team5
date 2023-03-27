@@ -196,9 +196,6 @@ def add_category(transaction):
             print()
             invalid = False
 
-
-    
-
 def delete_transaction(self):
     id = input("Enter transaction id to delete: ")
     if(self.delete_transaction(id)):
