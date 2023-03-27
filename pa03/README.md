@@ -58,6 +58,9 @@ test_add.py .....                                                               
 ```
 
 ## Summary by Date, Month, Year and Categoty Operations
+
+- Testing sum_by_date(), sum_by_month(), sum_by_year(), and sum_by_category()
+
 ```
 (base) iannag@iannas-air pa03 % pytest test_summary.py
 ================================================================= test session starts =================================================================
