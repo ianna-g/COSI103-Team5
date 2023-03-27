@@ -11,21 +11,25 @@ def toDictCategories(c):
     category = { 'id': c[0], 'name': c[1] }
     return category
 
+# Author: Rose
 def toDictSumByDate(t):
     ''' t is a tuple (date, category, # of transactions, sum of transaction amounts)'''
     summary = {'date': t[0], 'category': t[1], '# of transactions': t[2], 'sum of transaction amounts': t[3]}
     return summary
 
+# Author: Rose
 def toDictSumByMonth(t):
     ''' t is a tuple (month, category, # of transactions, sum of transaction amounts)'''
     summary = {'month': t[0], 'category': t[1], '# of transactions': t[2], 'sum of transaction amounts': t[3]}
     return summary
 
+# Author: Rose
 def toDictSumByYear(t):
     ''' t is a tuple (year, category, # of transactions, sum of transaction amounts)'''
     summary = {'year': t[0], 'category': t[1], '# of transactions': t[2], 'sum of transaction amounts': t[3]}
     return summary
 
+# Author: Rose
 def toDictSumByCategory(t):
 <<<<<<< HEAD
     ''' t is a tuple (category, date, # of transactions, avg of transaction amounts, sum of transaction amounts)'''
@@ -46,6 +50,7 @@ class Transaction:
                     (id INTEGER PRIMARY KEY AUTOINCREMENT, name text)''',())
     
     # Run this method if you want to query through the catagory table
+    # Author: Rose
     def runCategoryQuery(self, query, tuple):
         con= sqlite3.connect(os.getenv('HOME') + "/" + self.filename)
         cur = con.cursor() 
@@ -67,6 +72,7 @@ class Transaction:
         return [toDictTransactions(t) for t in tuples]
     
     # Used to print out sum by date
+    # Author: Rose
     def runQuerySumByDate(self,query,tuple):
         con= sqlite3.connect(os.getenv('HOME') + "/" + self.filename)
         cur = con.cursor()
@@ -78,6 +84,7 @@ class Transaction:
         
     
     # Used to print out sum by month
+    # Author: Rose
     def runQuerySumByMonth(self,query,tuple):
         con= sqlite3.connect(os.getenv('HOME') + "/" + self.filename)
         cur = con.cursor()
@@ -89,6 +96,7 @@ class Transaction:
         return [toDictSumByMonth(t) for t in tuples]
     
     # Used to print out sum by year
+    # Author: Rose
     def runQuerySumByYear(self,query,tuple):
         con= sqlite3.connect(os.getenv('HOME') + "/" + self.filename)
         cur = con.cursor()
@@ -100,6 +108,7 @@ class Transaction:
         return [toDictSumByYear(t) for t in tuples]
     
     # Used to print out sum by category
+    # Author: Rose
     def runQuerySumByCategory(self,query,tuple):
         con= sqlite3.connect(os.getenv('HOME') + "/" + self.filename)
         cur = con.cursor()
