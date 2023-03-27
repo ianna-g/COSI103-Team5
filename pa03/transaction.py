@@ -180,11 +180,11 @@ class Transaction:
         return self.runQuerySumByCategory("SELECT category, date, COUNT(amount), SUM(amount) FROM transactions GROUP BY category;", ())
 
 
-######################Shaitea#########################
+######################Shaithea#########################
     # deletes a transaction
     def delete_transaction(self, item_number):
         return self.runQuery("DELETE FROM transactions WHERE id = ?;", (item_number,))
 
     # modifies the category of a transaction
-    def modify_category(self, oldName, newName):
-        return self.runQuery("UPDATE categories SET name = ? WHERE id = ?;", (newName, oldName))
+    def modify_category(self, id, newName):
+        return self.runQuery("UPDATE categories SET name = ? WHERE id = ?;", (newName, id))
