@@ -1,4 +1,5 @@
 # test for each method in Transaction class
+#Class written by Shaitea
 from transaction import *
 # t_trans = Transaction("testdatabase123")
 # print(t_trans.show_transactions())

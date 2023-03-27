@@ -29,7 +29,7 @@ def toDictSumByYear(t):
     summary = {'year': t[0], 'category': t[1], '# of transactions': t[2], 'sum of transaction amounts': t[3]}
     return summary
 
-# Author: Rose
+# Author: Ianna
 def toDictSumByCategory(t):
     ''' t is a tuple (category, date, # of transactions, sum of transaction amounts)'''
     summary = {'category': t[0], 'date': t[1], '# of transactions': t[2], 'sum of transaction amounts': t[3]}
@@ -180,7 +180,7 @@ class Transaction:
         return self.runQuerySumByCategory("SELECT category, date, COUNT(amount), SUM(amount) FROM transactions GROUP BY category;", ())
 
 
-###############################################
+######################Shaitea#########################
     # deletes a transaction
     def delete_transaction(self, item_number):
         return self.runQuery("DELETE FROM transactions WHERE id = ?;", (item_number,))
