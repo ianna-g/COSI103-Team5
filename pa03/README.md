@@ -290,6 +290,71 @@ item #     amount     category        date            description
 Enter Option # (11 to view options) >
 ```
 
+## Summary Operations
+(base) iannag@iannas-air pa03 % python3 tracker.py
+Enter filename of database you would like to interact with (omit the .db extension): FinanceTracker.db
+
+    0. quit
+    1. show categories
+    2. add category
+    3. modify category
+    4. show transactions
+    5. add transaction
+    6. delete transaction
+    7. summarize transactions by date
+    8. summarize transactions by month
+    9. summarize transactions by year
+    10. summarize transactions by category
+    11. print this menu
+    
+Enter Option # (11 to view options) > 4
+Transactions
+
+item #     amount     category        date            description    
+--------------------------------------------------------------------------------
+1          30.0       5               2010-03-01      picnic         
+2          50.0       5               2010-03-01      outing         
+3          4.0        1               2023-05-25      snacks         
+--------------------------------------------------------------------------------
+
+Enter Option # (11 to view options) > 7
+summarize transactions by date
+
+date          category   # of transactions    sum of transaction amounts
+---------------------------------------------------------------------------
+2010-03-01    5          2                    80.0                
+2023-05-25    1          1                    4.0                 
+---------------------------------------------------------------------------
+
+Enter Option # (11 to view options) > 8
+summarize transactions by month
+[{'month': '03', 'category': 1, '# of transactions': 2, 'sum of transaction amounts': 80.0}, {'month': '05', 'category': 2, '# of transactions': 1, 'sum of transaction amounts': 4.0}]
+
+month         category   # of transactions    sum of transaction amounts
+---------------------------------------------------------------------------
+03            5          2                    80.0                
+05            1          1                    4.0                 
+---------------------------------------------------------------------------
+
+Enter Option # (11 to view options) > 9
+summarize transactions by year
+[{'year': '2010', 'category': 1, '# of transactions': 2, 'sum of transaction amounts': 80.0}, {'year': '2023', 'category': 2, '# of transactions': 1, 'sum of transaction amounts': 4.0}]
+
+year          category   # of transactions    sum of transaction amounts
+---------------------------------------------------------------------------
+2010          5          2                    80.0                
+2023          1          1                    4.0                 
+---------------------------------------------------------------------------
+
+Enter Option # (11 to view options) > 10
+summarize transactions by category
+[{'category': 1, 'date': '2010-03-01', '# of transactions': 2, 'sum of transaction amounts': 80.0}, {'category': 2, 'date': '2023-05-25', '# of transactions': 1, 'sum of transaction amounts': 4.0}]
+
+category   date            # of transactions    sum of transaction amounts    
+--------------------------------------------------------------------------------
+5          2010-03-01      2                    80.0                          
+1          2023-05-25      1                    4.0                           
+--------------------------------------------------------------------------------
 ## Modify and Delete Categories Operations
 
 (base) shaithea@Shaitheas-MacBook-Pro pa03 % python create_db.py
