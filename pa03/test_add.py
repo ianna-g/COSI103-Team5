@@ -1,6 +1,6 @@
 from transaction import *
 
-trans = Transaction("testsss")
+trans = Transaction("testssss")
 sample_1 = { "amount": 45.0, "category": 1, "date": "2023-02-10", "description": "two tickets for cornmaze" }
 sample_2 = { "amount": 55.0, "category": 2, "date": "2013-02-10", "description": "concert" }
 sample_2_data = ( 1, 55.0, 2, "2013-02-10", "concert" )
