@@ -57,6 +57,19 @@ test_add.py .....                                                               
 =============================================================================================== 5 passed in 0.17s ===============================================================================================
 ```
 
+## Summary by Date, Month, Year and Categoty Operations
+```
+(base) iannag@iannas-air pa03 % pytest test_summary.py
+================================================================= test session starts =================================================================
+platform darwin -- Python 3.11.1, pytest-7.2.1, pluggy-1.0.0
+rootdir: /Users/iannag/Desktop/Git-Hub/COSI103-Team5/pa03
+collected 4 items                                                                                                                                     
+
+test_summary.py ....                                                                                                                            [100%]
+
+================================================================== 4 passed in 0.01s ==================================================================
+```
+
 # tracker.py Demonstration Transcript
 
 ## Add Transaction and Add Category Operations
