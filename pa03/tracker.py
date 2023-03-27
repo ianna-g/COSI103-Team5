@@ -31,7 +31,8 @@ def print_transactions(response, database):
     print("%-10s %-10s %-15s %-15s %-15s"%('item #', 'amount','category','date','description'))
     print('-'*80)
     for values in response:
-        values = (str(values['item #']), str(values['amount']), database.get_category(int(values['category'])), values['date'], values['description'])
+        values = (str(values['item #']), str(values['amount']),
+        database.get_category(int(values['category'])), values['date'], values['description'])
         print("%-10s %-10s %-15s %-15s %-15s" % values)
     print('-'*80)
     print()
@@ -51,10 +52,12 @@ def print_sum_by_date(response, database):
         print('no transactions to summarize')
         return
     print()
-    print("%-13s %-10s %-20s %-20s"%('date', 'category','# of transactions','sum of transaction amounts'))
+    print("%-13s %-10s %-20s %-20s"%('date', 'category','# of transactions',
+    'sum of transaction amounts'))
     print('-'*75)
     for values in response:
-        values = (str(values['date']), database.get_category(int(values['category'])), str(values['# of transactions']), values['sum of transaction amounts'])
+        values = (str(values['date']), database.get_category(int(values['category'])),
+        str(values['# of transactions']), values['sum of transaction amounts'])
         print("%-13s %-10s %-20s %-20s" % values)
     print('-'*75)
     print()
@@ -65,10 +68,12 @@ def print_sum_by_month(response, database):
         print('no transactions to summarize')
         return
     print()
-    print("%-13s %-10s %-20s %-20s"%('month', 'category','# of transactions','sum of transaction amounts'))
+    print("%-13s %-10s %-20s %-20s"%('month', 'category','# of transactions',
+    'sum of transaction amounts'))
     print('-'*75)
     for values in response:
-        values = (str(values['month']), database.get_category(int(values['category'])), str(values['# of transactions']), values['sum of transaction amounts'])
+        values = (str(values['month']), database.get_category(int(values['category'])),
+        str(values['# of transactions']), values['sum of transaction amounts'])
         print("%-13s %-10s %-20s %-20s" % values)
     print('-'*75)
     print()
@@ -79,10 +84,12 @@ def print_sum_by_year(response, database):
         print('no transactions to summarize')
         return
     print()
-    print("%-13s %-10s %-20s %-20s"%('year', 'category','# of transactions','sum of transaction amounts'))
+    print("%-13s %-10s %-20s %-20s"%('year', 'category',
+    '# of transactions','sum of transaction amounts'))
     print('-'*75)
     for values in response:
-        values = (str(values['year']), database.get_category(int(values['category'])), str(values['# of transactions']), values['sum of transaction amounts'])
+        values = (str(values['year']), database.get_category(int(values['category'])),
+        str(values['# of transactions']), values['sum of transaction amounts'])
         print("%-13s %-10s %-20s %-20s" % values)
     print('-'*75)
     print()
@@ -93,10 +100,13 @@ def print_sum_by_category(response, database):
         print('no transactions to summarize')
         return
     print()
-    print("%-10s %-15s %-20s %-30s"%('category','date','# of transactions','sum of transaction amounts'))
+    print("%-10s %-15s %-20s %-30s"%('category','date','# of transactions',
+    'sum of transaction amounts'))
     print('-'*80)
     for values in response:
-        values = (database.get_category(int(values['category'])), str(values['date']), str(values['# of transactions']), str(values['sum of transaction amounts']))
+        values = (database.get_category(int(values['category'])),
+        str(values['date']), str(values['# of transactions']),
+        str(values['sum of transaction amounts']))
         print("%-10s %-15s %-20s %-30s" % values)
     print('-'*80)
     print()
@@ -161,7 +171,7 @@ def add_transaction(transaction):
     invalid = True
     while invalid:
         category_index = get_category_index(transaction)
-        if(category_index == -1):
+        if category_index == -1:
             return
         print("Enter transaction details (amount;date(YYYY-MM-DD);description):")
         details_str = input("> ")
@@ -183,7 +193,8 @@ def add_transaction(transaction):
 
             description = details_arr[2].strip()
 
-            details = { 'amount': amount, 'category': category_index, 'date': date, 'description': description }
+            details = { 'amount': amount, 'category': category_index, 
+            'date': date, 'description': description }
         except ValueError:
             print("!!!!!!!!!!!!!!!!!!!!!")
         else:
@@ -220,7 +231,7 @@ def add_category(transaction):
 def delete_transaction(transaction):
     """ Print existing categories and ask to enter new category name """
     transaction_index = get_transaction_index(transaction)
-    if(transaction_index == -1):
+    if transaction_index == -1:
         return
     transaction.delete_transaction(transaction_index)
     print()
@@ -233,7 +244,7 @@ def modify_category(transaction):
     print("Categories")
     print_categories(transaction.show_categories())
     category_index = get_category_index(transaction)
-    if(category_index == -1):
+    if category_index == -1:
         return
     invalid = True
     while invalid:
@@ -241,7 +252,7 @@ def modify_category(transaction):
         new_name = input("> ")
         new_name = new_name.replace(" ", "").upper()
         if transaction.check_category_exists(new_name):
-            print("!!! That category already exists !!!")    
+            print("!!! That category already exists !!!")
         else:
             print()
             trans.modify_category(category_index, new_name)
@@ -249,7 +260,7 @@ def modify_category(transaction):
             print()
             invalid = False
 
-# REPL 
+# REPL
 # Loop to interact with Tracker
 trans = Transaction(input("Enter filename of database you would like to interact with (omit the .db extension): ") + '.db')
 print_commands()
