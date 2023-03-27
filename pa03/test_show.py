@@ -2,6 +2,7 @@ import pytest
 from transaction import *
 
 # Be sure to delete the abc123 and 123abc file at your home directory or this will fail since it needs a new file every time
+# Author: Rose
 
 def test_show_transaction():
     # Test that show_transaction works when adding entries
