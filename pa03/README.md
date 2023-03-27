@@ -21,7 +21,7 @@ create a README.md file which describes your app and contains
 Ianna: summarize
 Minsung: add
 Rose: show
-Anusha: modify/delete
+Shaithea: modify/delete
 
 # Pytest Transcript
 
@@ -72,6 +72,21 @@ test_summary.py ....                                                            
 
 ================================================================== 4 passed in 0.01s ==================================================================
 ```
+
+## Modify and Delete Operations
+
+- Testing modify_category() and delete_transaction()
+
+(base) shaithea@Shaitheas-MacBook-Pro pa03 % pytest test_transaction.py
+========================================================= test session starts ==========================================================
+platform darwin -- Python 3.9.7, pytest-6.2.4, py-1.10.0, pluggy-0.13.1
+rootdir: /Users/shaithea/Documents/GitHub/COSI103-Team5/pa03
+plugins: anyio-2.2.0
+collected 2 items                                                                                                                      
+
+test_transaction.py ..                                                                                                           [100%]
+
+========================================================== 2 passed in 0.02s ===========================================================
 
 # tracker.py Demonstration Transcript
 
@@ -186,3 +201,153 @@ item #     amount     category        date            description
 
 Enter Option # (11 to view options) >
 ```
+
+## Modify and Delete Categories Operations
+
+(base) shaithea@Shaitheas-MacBook-Pro pa03 % python create_db.py
+(base) shaithea@Shaitheas-MacBook-Pro pa03 % python tracker.py  
+Enter filename of database you would like to interact with (omit the .db extension): FinanceTracker 
+
+    0. quit
+    1. show categories
+    2. add category
+    3. modify category
+    4. show transactions
+    5. add transaction
+    6. delete transaction
+    7. summarize transactions by date
+    8. summarize transactions by month
+    9. summarize transactions by year
+    10. summarize transactions by category
+    11. print this menu
+    
+Enter Option # (11 to view options) > 1
+Show Categories
+no categories to print
+Enter Option # (11 to view options) > 2
+Add Category
+Categories
+no categories to print
+Enter new category:
+> Food
+
+New Category Saved!
+
+Enter Option # (11 to view options) > 2
+Add Category
+Categories
+
+index                name                
+----------------------------------------
+1                    FOOD                
+----------------------------------------
+
+Enter new category:
+> Technology
+
+New Category Saved!
+
+Enter Option # (11 to view options) > 5
+Add Transaction
+Select category index (or -1 to cancel): 
+
+index                name                
+----------------------------------------
+1                    FOOD                
+2                    TECHNOLOGY          
+----------------------------------------
+
+> 1
+Enter transaction details (amount;date(YYYY-MM-DD);description):
+> 5;2023-03-02;oreo thins
+
+Transaction Entry Successful!
+
+Enter Option # (11 to view options) > 5
+Add Transaction
+Select category index (or -1 to cancel): 
+
+index                name                
+----------------------------------------
+1                    FOOD                
+2                    TECHNOLOGY          
+----------------------------------------
+
+> 2
+Enter transaction details (amount;date(YYYY-MM-DD);description):
+> 1000;2023-05-11;new laptop
+
+Transaction Entry Successful!
+
+Enter Option # (11 to view options) > 4
+Transactions
+
+item #     amount     category        date            description    
+--------------------------------------------------------------------------------
+1          5.0        FOOD            2023-03-02      oreo thins     
+2          1000.0     TECHNOLOGY      2023-05-11      new laptop     
+--------------------------------------------------------------------------------
+
+Enter Option # (11 to view options) > 3
+Modify Category
+Categories
+
+index                name                
+----------------------------------------
+1                    FOOD                
+2                    TECHNOLOGY          
+----------------------------------------
+
+Select category index (or -1 to cancel): 
+
+index                name                
+----------------------------------------
+1                    FOOD                
+2                    TECHNOLOGY          
+----------------------------------------
+
+> 1
+Enter new category name:
+> snacks
+
+Category Modified!
+
+Enter Option # (11 to view options) > 1
+Show Categories
+
+index                name                
+----------------------------------------
+1                    SNACKS              
+2                    TECHNOLOGY          
+----------------------------------------
+
+Enter Option # (11 to view options) > 4
+Transactions
+
+item #     amount     category        date            description    
+--------------------------------------------------------------------------------
+1          5.0        SNACKS          2023-03-02      oreo thins     
+2          1000.0     TECHNOLOGY      2023-05-11      new laptop     
+--------------------------------------------------------------------------------
+
+Enter Option # (11 to view options) > 6
+Delete Transaction
+Select transaction index to delete (or -1 to cancel): 
+
+item #     amount     category        date            description    
+--------------------------------------------------------------------------------
+1          5.0        SNACKS          2023-03-02      oreo thins     
+2          1000.0     TECHNOLOGY      2023-05-11      new laptop     
+--------------------------------------------------------------------------------
+
+> 1
+
+Transaction deleted.
+
+Enter Option # (11 to view options) > 4
+Transactions
+
+item #     amount     category        date            description    
+--------------------------------------------------------------------------------
+2          1000.0     TECHNOLOGY      2023-05-11      new laptop     
+--------------------------------------------------------------------------------
