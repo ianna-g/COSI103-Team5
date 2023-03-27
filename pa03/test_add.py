@@ -26,10 +26,13 @@ def test_check_category_exists():
     assert trans.check_category_exists("technology") == is_true
     assert trans.check_category_exists("pet products") == is_false
 
-def test_toDictTransactions():
+def test_to_dict_transactions():
+    """ test to convert tuple to dictionary """
     expected = { "item #": 1, "amount": 55.0, "category": 2, "date": "2013-02-10", "description": "concert" }
     assert toDictTransactions(sample_2_data) == expected
-    
-def test_toDictCategories():
+
+def test_to_dict_categories():
+    """ test to convert tuple to dictionary """
     expected = { "id": 2, "name": "concert" }
     assert toDictCategories(sample_2_cate) == expected
+    
