@@ -71,7 +71,9 @@ class Transaction:
         tuples = cur.fetchall()
         con.commit()
         con.close()
+        print([toDictSumByDate(t) for t in tuples])
         return [toDictSumByDate(t) for t in tuples]
+        
     
     # Used to print out sum by month
     def runQuerySumByMonth(self,query,tuple):
@@ -157,7 +159,7 @@ class Transaction:
     
         #extract the months 
     def sum_by_month(self):
-        return self.runQuerySumByMonth("SELECT EXTRACT(MONTH FROM date) as month, category, COUNT(amount), SUM(amount) FROM transactions GROUP BY month;", ())
+        return self.runQuerySumByMonth("SELECT EXTRACT(MONTH FROM date) as month, category, COUNT(date), SUM(amount) FROM transactions GROUP BY month;", ())
     
     #extract the years 
     def sum_by_year(self):
