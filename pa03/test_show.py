@@ -13,9 +13,16 @@ def test_show_transaction():
     assert t_trans.show_transactions().__str__() == expected
     t_trans.add_transaction({ 'amount': 1, 'category': 2, 'date': '2023-04-20', 'description': 'testingABC' })
     expected = "[{'item #': 1, 'amount': 10.0, 'category': 1, 'date': '2023-03-25', 'description': 'testing123'}, {'item #': 2, 'amount': 1.0, 'category': 2, 'date': '2023-04-20', 'description': 'testingABC'}]"
-    # TODO Test that show_transaction works when removing entries
+    # Test that show_transaction works when removing entries
+    t_trans.delete_transaction(2)
+    expected = "[{'item #': 1, 'amount': 10.0, 'category': 1, 'date': '2023-03-25', 'description': 'testing123'}]"
+    assert t_trans.show_transactions().__str__() == expected
+    t_trans.delete_transaction(1)
+    expected = "[]"
+    assert t_trans.show_transactions().__str__() == expected
 
 def test_show_catagories():
+    # Test that show_catagories works when adding entries
     t_trans = Transaction("123abc")
     expected = "[]"
     assert t_trans.show_categories().__str__() == expected
@@ -25,4 +32,8 @@ def test_show_catagories():
     t_trans.add_category("TWO")
     expected = "[{'id': 1, 'name': 'ONE'}, {'id': 2, 'name': 'TWO'}]"
     assert t_trans.show_categories().__str__() == expected
-    # TODO Test that show_catagories works when modifying entries
+    # Test that show_catagories works when modifying entries
+    t_trans.modify_category(1, "NEW")
+    expected = "[{'id': 1, 'name': 'NEW'}, {'id': 2, 'name': 'TWO'}]"
+    assert t_trans.show_categories().__str__() == expected
+

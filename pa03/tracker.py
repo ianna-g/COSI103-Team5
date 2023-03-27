@@ -93,12 +93,21 @@ def print_sum_by_category(response, database):
         print('no transactions to summarize')
         return
     print()
+<<<<<<< HEAD
     print("%-10s %-15s %-20s %-20s"%('category','date','# of transactions','sum of transaction amounts'))
     print('-'*110)
     for values in response:
         values = (database.get_category(int(values['category'])), str(values['date']), str(values['# of transactions']), str(values['sum of transaction amounts']))
         print("%-10s %-15s %-20s %-20s" % values)
     print('-'*110)
+=======
+    print("%-10s %-15s %-20s %-30s"%('category','date','# of transactions','sum of transaction amounts'))
+    print('-'*80)
+    for values in response:
+        values = (database.get_category(int(values['category'])), str(values['date']), str(values['# of transactions']), str(values['sum of transaction amounts']))
+        print("%-10s %-15s %-20s %-30s" % values)
+    print('-'*80)
+>>>>>>> c13ae76b5188d42925281e7fa431e393047f6771
     print()
 ##############################################################################################
 
@@ -117,10 +126,10 @@ def print_categories(response):
     print()
 
 def get_category_index(transaction):
-    """ asks the user to select a category when creating a transaction """
+    """ asks the user to select a category """
     index = -1
     invalid = True
-    print("Select category index for transaction (or -1 to cancel): ")
+    print("Select category index (or -1 to cancel): ")
     existing_cate = transaction.show_categories()
     print_categories(existing_cate)
     while invalid:
@@ -130,6 +139,26 @@ def get_category_index(transaction):
                 return -1
             if index < 1 or index > len(existing_cate):
                 print("!!! That index does not exist !!!")
+            else:
+                invalid = False
+        except ValueError:
+            print("!!! Invalid Input !!!")
+    return index
+
+def get_transaction_index(transaction):
+    """ asks the user to select a transaction id when deleting a transaction """
+    index = -1
+    invalid = True
+    print("Select transaction index to delete (or -1 to cancel): ")
+    existing_trans = transaction.show_transactions()
+    print_transactions(existing_trans, transaction)
+    while invalid:
+        try:
+            index = int(input("> "))
+            if(index == -1):
+                return -1
+            if index < 1 or index > len(existing_trans):
+                print("!!! That transaction id does not exist !!!")
             else:
                 invalid = False
         except ValueError:
@@ -197,24 +226,37 @@ def add_category(transaction):
             invalid = False
 
 
-    
+def delete_transaction(transaction):
+    """ Print existing categories and ask to enter new category name """
+    transaction_index = get_transaction_index(transaction)
+    if(transaction_index == -1):
+        return
+    transaction.delete_transaction(transaction_index)
+    print()
+    print("Transaction deleted.")
+    print()
 
-def delete_transaction(self):
-    id = input("Enter transaction id to delete: ")
-    if(self.delete_transaction(id)):
-        print(f"Deleted transaction {id}.")
-    else:
-        print(f"Transaction {id} does not exist.")
 
-def modify_category(self,transaction):
-    category = input("Enter category to modify: ")
-    new_category = input("Enter new category name: ")
-    if(self.modify_category(category, new_category)):
-        transaction.check_category_exists(self, new_category)
-        print_categories(transaction.show_categories())
-        print(f"Modified category {category} to {new_category}.")
-    else:
-        print(f"Category {category} was unable to be modified.")
+def modify_category(transaction):
+    """ Print existing categories and ask to enter new category name """
+    print("Categories")
+    print_categories(transaction.show_categories())
+    category_index = get_category_index(transaction)
+    if(category_index == -1):
+        return
+    invalid = True
+    while invalid:
+        print("Enter new category name:")
+        new_name = input("> ")
+        new_name = new_name.replace(" ", "").upper()
+        if transaction.check_category_exists(new_name):
+            print("!!! That category already exists !!!")    
+        else:
+            print()
+            trans.modify_category(category_index, new_name)
+            print("Category Modified!")
+            print()
+            invalid = False
 
 # REPL 
 # Loop to interact with Tracker
@@ -240,7 +282,8 @@ while interface_active:
                 print("Add Category")
                 add_category(trans)
             elif option == 3:
-                print("modify category")
+                print("Modify Category")
+                modify_category(trans)
             elif option == 4:
                 print("Transactions")
                 print_transactions(trans.show_transactions(), trans)
@@ -248,7 +291,8 @@ while interface_active:
                 print("Add Transaction")
                 add_transaction(trans)
             elif option == 6:
-                print("delete transaction")
+                print("Delete Transaction")
+                delete_transaction(trans)
             elif option == 7:
                 print("summarize transactions by date")
                 print_sum_by_date(trans.sum_by_date(), trans)

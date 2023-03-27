@@ -27,7 +27,11 @@ def toDictSumByYear(t):
     return summary
 
 def toDictSumByCategory(t):
+<<<<<<< HEAD
     ''' t is a tuple (category, date, # of transactions, avg of transaction amounts, sum of transaction amounts)'''
+=======
+    ''' t is a tuple (category, date, # of transactions, sum of transaction amounts)'''
+>>>>>>> c13ae76b5188d42925281e7fa431e393047f6771
     summary = {'category': t[0], 'date': t[1], '# of transactions': t[2], 'sum of transaction amounts': t[3]}
     return summary
 
@@ -49,7 +53,6 @@ class Transaction:
         tuples = cur.fetchall()
         con.commit()
         con.close()
-        print(tuples)
         return [toDictCategories(c) for c in tuples]
 
     # Run this method if you want to query through the main table
@@ -71,7 +74,6 @@ class Transaction:
         tuples = cur.fetchall()
         con.commit()
         con.close()
-        print([toDictSumByDate(t) for t in tuples])
         return [toDictSumByDate(t) for t in tuples]
         
     
@@ -116,7 +118,7 @@ class Transaction:
     
     def check_category_exists(self, category):
         """ Check if category already exists in categories table """
-        con= sqlite3.connect(os.getenv('HOME') + "/" + self.filename)
+        con = sqlite3.connect(os.getenv('HOME') + "/" + self.filename)
         cur = con.cursor()
         cur.execute("SELECT * FROM categories WHERE name = ?", (category,))
         data = cur.fetchone()
@@ -180,4 +182,4 @@ class Transaction:
 
     # modifies the category of a transaction
     def modify_category(self, oldName, newName):
-        return self.runQuery("UPDATE transaction SET category = ? WHERE category = ?;", (oldName, newName))
+        return self.runQuery("UPDATE categories SET name = ? WHERE id = ?;", (newName, oldName))
