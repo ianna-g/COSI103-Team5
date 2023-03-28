@@ -146,6 +146,18 @@ class Transaction:
         # FROM categories WHERE name= ? );", (category))
         # return exists
 
+    def check_transaction_exists(self, transaction_index):
+        """ Check if transaction exists in table """
+        con = sqlite3.connect(os.getenv('HOME') + "/" + self.filename)
+        cur = con.cursor()
+        cur.execute("SELECT * FROM transactions WHERE id = ?", (transaction_index,))
+        data = cur.fetchone()
+        con.commit()
+        con.close()
+        if data is None:
+            return False
+        return True
+
     def add_category(self, category):
         """ Add category entry to categories table """
         return self.run_query("INSERT INTO categories (name) VALUES (?);", (category,))

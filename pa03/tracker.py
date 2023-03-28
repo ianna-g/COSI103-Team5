@@ -158,9 +158,9 @@ def get_transaction_index(transaction):
     while invalid:
         try:
             index = int(input("> "))
-            if index == -1:
+            if index <= 0:
                 return -1
-            if index < 1 or index > len(existing_trans):
+            if not transaction.check_transaction_exists(index):
                 print("!!! That transaction id does not exist !!!")
             else:
                 invalid = False
