@@ -3,19 +3,6 @@ This app creates a database to keep track of transactions. Run the tracker.py fi
 This app lets you add categories and modify (rename) them. You can also add transactions, which each have an amount, category, date, and description. You can delete any transaction by entering it's unique ID. Finally, you can summarize the transactions in any file's database by their category, date, year, or month. The summary will provide the number of transactions in each group, and the sum of the amounts.
 
 
-# TODO add the following
-- a script of you running pylint, and
-- then running pytest, and
-- then running tracker.py and demonstrating all of the features you added
-
-Creating a transcript -
-create a transcript of your session as you demonstrate each of the features you have implemented.
-create a README.md file which describes your app and contains
-
-- a script of you running pylint, and
-- then running pytest, and
-- then running tracker.py and demonstrating all of the features you added
-
 # Work Allocation
 
 Ianna: summarize
@@ -27,89 +14,15 @@ Shaithea: modify/delete
 
 - Pylint for tracker.py
 
-(base) shaithea@Shaitheas-MacBook-Pro pa03 % pylint tracker.py
-************* Module tracker
-tracker.py:139:0: C0325: Unnecessary parens after 'if' keyword (superfluous-parens)
-tracker.py:159:0: C0325: Unnecessary parens after 'if' keyword (superfluous-parens)
-tracker.py:196:69: C0303: Trailing whitespace (trailing-whitespace)
-tracker.py:265:0: C0301: Line too long (123/100) (line-too-long)
-tracker.py:5:0: W0401: Wildcard import transaction (wildcard-import)
-tracker.py:267:0: C0103: Constant name "interface_active" doesn't conform to UPPER_CASE naming style (invalid-name)
-tracker.py:279:16: C0103: Constant name "interface_active" doesn't conform to UPPER_CASE naming style (invalid-name)
-tracker.py:5:0: W0614: Unused import sqlite3 from wildcard import (unused-wildcard-import)
-tracker.py:5:0: W0614: Unused import os from wildcard import (unused-wildcard-import)
-tracker.py:5:0: W0614: Unused import toDictTransactions from wildcard import (unused-wildcard-import)
-tracker.py:5:0: W0614: Unused import toDictCategories from wildcard import (unused-wildcard-import)
-tracker.py:5:0: W0614: Unused import toDictSumByDate from wildcard import (unused-wildcard-import)
-tracker.py:5:0: W0614: Unused import toDictSumByMonth from wildcard import (unused-wildcard-import)
-tracker.py:5:0: W0614: Unused import toDictSumByYear from wildcard import (unused-wildcard-import)
-tracker.py:5:0: W0614: Unused import toDictSumByCategory from wildcard import (unused-wildcard-import)
-tracker.py:6:0: C0411: standard import "import datetime" should be placed before "from transaction import *" (wrong-import-order)
-
-------------------------------------------------------------------
-Your code has been rated at 9.32/10 (previous run: 9.32/10, +0.00)
-
 - Pylint for transaction.py
 
-(base) shaithea@Shaitheas-MacBook-Pro pa03 % pylint transaction.py
-************* Module transaction
-transaction.py:55:0: C0303: Trailing whitespace (trailing-whitespace)
-transaction.py:78:0: C0303: Trailing whitespace (trailing-whitespace)
-transaction.py:90:0: C0303: Trailing whitespace (trailing-whitespace)
-transaction.py:103:0: C0303: Trailing whitespace (trailing-whitespace)
-transaction.py:116:0: C0303: Trailing whitespace (trailing-whitespace)
-transaction.py:129:0: C0303: Trailing whitespace (trailing-whitespace)
-transaction.py:133:0: C0301: Line too long (194/100) (line-too-long)
-transaction.py:134:0: C0303: Trailing whitespace (trailing-whitespace)
-transaction.py:146:56: C0303: Trailing whitespace (trailing-whitespace)
-transaction.py:149:0: C0303: Trailing whitespace (trailing-whitespace)
-transaction.py:159:0: C0303: Trailing whitespace (trailing-whitespace)
-transaction.py:163:0: C0303: Trailing whitespace (trailing-whitespace)
-transaction.py:183:0: C0301: Line too long (127/100) (line-too-long)
-transaction.py:184:0: C0303: Trailing whitespace (trailing-whitespace)
-transaction.py:185:23: C0303: Trailing whitespace (trailing-whitespace)
-transaction.py:188:0: C0301: Line too long (154/100) (line-too-long)
-transaction.py:189:0: C0303: Trailing whitespace (trailing-whitespace)
-transaction.py:190:22: C0303: Trailing whitespace (trailing-whitespace)
-transaction.py:193:0: C0301: Line too long (151/100) (line-too-long)
-transaction.py:194:0: C0303: Trailing whitespace (trailing-whitespace)
-transaction.py:198:0: C0301: Line too long (135/100) (line-too-long)
-transaction.py:5:0: C0103: Function name "toDictTransactions" doesn't conform to snake_case naming style (invalid-name)
-transaction.py:5:0: C0103: Argument name "t" doesn't conform to snake_case naming style (invalid-name)
-transaction.py:11:0: C0103: Function name "toDictCategories" doesn't conform to snake_case naming style (invalid-name)
-transaction.py:11:0: C0103: Argument name "c" doesn't conform to snake_case naming style (invalid-name)
-transaction.py:17:0: C0103: Function name "toDictSumByDate" doesn't conform to snake_case naming style (invalid-name)
-transaction.py:17:0: C0103: Argument name "t" doesn't conform to snake_case naming style (invalid-name)
-transaction.py:24:0: C0103: Function name "toDictSumByMonth" doesn't conform to snake_case naming style (invalid-name)
-transaction.py:24:0: C0103: Argument name "t" doesn't conform to snake_case naming style (invalid-name)
-transaction.py:31:0: C0103: Function name "toDictSumByYear" doesn't conform to snake_case naming style (invalid-name)
-transaction.py:31:0: C0103: Argument name "t" doesn't conform to snake_case naming style (invalid-name)
-transaction.py:38:0: C0103: Function name "toDictSumByCategory" doesn't conform to snake_case naming style (invalid-name)
-transaction.py:38:0: C0103: Argument name "t" doesn't conform to snake_case naming style (invalid-name)
-transaction.py:46:4: W0105: String statement has no effect (pointless-string-statement)
-transaction.py:58:38: W0622: Redefining built-in 'tuple' (redefined-builtin)
-transaction.py:58:4: C0103: Method name "runCategoryQuery" doesn't conform to snake_case naming style (invalid-name)
-transaction.py:69:28: W0622: Redefining built-in 'tuple' (redefined-builtin)
-transaction.py:69:4: C0103: Method name "runQuery" doesn't conform to snake_case naming style (invalid-name)
-transaction.py:81:37: W0622: Redefining built-in 'tuple' (redefined-builtin)
-transaction.py:81:4: C0103: Method name "runQuerySumByDate" doesn't conform to snake_case naming style (invalid-name)
-transaction.py:93:38: W0622: Redefining built-in 'tuple' (redefined-builtin)
-transaction.py:93:4: C0103: Method name "runQuerySumByMonth" doesn't conform to snake_case naming style (invalid-name)
-transaction.py:106:37: W0622: Redefining built-in 'tuple' (redefined-builtin)
-transaction.py:106:4: C0103: Method name "runQuerySumByYear" doesn't conform to snake_case naming style (invalid-name)
-transaction.py:119:41: W0622: Redefining built-in 'tuple' (redefined-builtin)
-transaction.py:119:4: C0103: Method name "runQuerySumByCategory" doesn't conform to snake_case naming style (invalid-name)
-transaction.py:208:4: C0103: Argument name "newName" doesn't conform to snake_case naming style (invalid-name)
+- Pylint for test_transaction.py
 
-------------------------------------------------------------------
-Your code has been rated at 5.91/10 (previous run: 5.91/10, +0.00)
+- Pylint for test_add.py
 
-- Pylint for test_treansaction.py
+- Pylint for test_show.py
 
-(base) shaithea@Shaitheas-MacBook-Pro pa03 % pylint test_transaction.py
-
----------------------------------------------------------------------
-Your code has been rated at 10.00/10 (previous run: -6.43/10, +16.43)
+- Pylint for test_summary.py
 
 # Pytest Transcript
 

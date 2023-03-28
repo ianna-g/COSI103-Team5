@@ -2,8 +2,8 @@
 Tracker Interface
 allows users to perform CRUD operations on transactions database
 """
-from transaction import *
 import datetime
+import transaction as t_module
 
 def print_commands():
     ''' Print all available commands. '''
@@ -28,12 +28,13 @@ def print_transactions(response, database):
         print('no transactions to print')
         return
     print()
-    print("%-10s %-10s %-15s %-15s %-15s"%('item #', 'amount','category','date','description'))
+    print(f'{"item #":<10}{"amount":<10}{"category":<15}{"date":<15}{"description":<15}')
     print('-'*80)
     for values in response:
         values = (str(values['item #']), str(values['amount']),
         database.get_category(int(values['category'])), values['date'], values['description'])
-        print("%-10s %-10s %-15s %-15s %-15s" % values)
+        print(
+            f'''{values[0]:<10}{values[1]:<10}{values[2]:<15}{values[3]:<15}{values[4]:<15}''')
     print('-'*80)
     print()
 
@@ -52,13 +53,14 @@ def print_sum_by_date(response, database):
         print('no transactions to summarize')
         return
     print()
-    print("%-13s %-10s %-20s %-20s"%('date', 'category','# of transactions',
-    'sum of transaction amounts'))
+
+    print(
+    f"""{'Date':<13}{'Category':<10}{'# of Transactions':<20}{'Sum of Transaction Amounts':<20}""")
     print('-'*75)
     for values in response:
         values = (str(values['date']), database.get_category(int(values['category'])),
         str(values['# of transactions']), values['sum of transaction amounts'])
-        print("%-13s %-10s %-20s %-20s" % values)
+        print(f"""{values[0]: <13}{values[1]: <10}{values[2]: <20}{values[3]:<20}""")
     print('-'*75)
     print()
 
@@ -68,13 +70,13 @@ def print_sum_by_month(response, database):
         print('no transactions to summarize')
         return
     print()
-    print("%-13s %-10s %-20s %-20s"%('month', 'category','# of transactions',
-    'sum of transaction amounts'))
+    print(
+    f"""{'Month':<13}{'Category':<10}{'# of Transactions':<20}{'Sum of Transaction Amounts':<20}""")
     print('-'*75)
     for values in response:
         values = (str(values['month']), database.get_category(int(values['category'])),
         str(values['# of transactions']), values['sum of transaction amounts'])
-        print("%-13s %-10s %-20s %-20s" % values)
+        print(f"""{values[0]:<13}{values[1]:<10}{values[2]:<20}{values[3]:<20}""")
     print('-'*75)
     print()
 
@@ -84,13 +86,13 @@ def print_sum_by_year(response, database):
         print('no transactions to summarize')
         return
     print()
-    print("%-13s %-10s %-20s %-20s"%('year', 'category',
-    '# of transactions','sum of transaction amounts'))
+    print(
+    f"""{'Year':<13}{'Category':<10}{'# of Transactions':<20}{'Sum of Transaction Amounts':<20}""")
     print('-'*75)
     for values in response:
         values = (str(values['year']), database.get_category(int(values['category'])),
         str(values['# of transactions']), values['sum of transaction amounts'])
-        print("%-13s %-10s %-20s %-20s" % values)
+        print(f"""{values[0]:<13}{values[1]:<10}{values[2]:<20}{values[3]:<20}""")
     print('-'*75)
     print()
 
@@ -100,14 +102,14 @@ def print_sum_by_category(response, database):
         print('no transactions to summarize')
         return
     print()
-    print("%-10s %-15s %-20s %-30s"%('category','date','# of transactions',
-    'sum of transaction amounts'))
+    print(
+    f"""{'Category':<10}{'Date':<15}{'# of Transactions':<20}{'Sum of Transaction Amounts':<30}""")
     print('-'*80)
     for values in response:
         values = (database.get_category(int(values['category'])),
         str(values['date']), str(values['# of transactions']),
         str(values['sum of transaction amounts']))
-        print("%-10s %-15s %-20s %-30s" % values)
+        print(f"""{values[0]:<10}{values[1]:<15}{values[2]:<20}{values[3]:<30}""")
     print('-'*80)
     print()
 ##############################################################################################
@@ -118,11 +120,11 @@ def print_categories(response):
         print('no categories to print')
         return
     print()
-    print("%-20s %-20s"%('index', 'name'))
+    print(f"{'Index': <20} {'Name': <20}")
     print('-'*40)
     for values in response:
         values = (str(values['id']), values['name'])
-        print("%-20s %-20s" % values)
+        print(f"{values[0]: <20} {values[1]: <20}")
     print('-'*40)
     print()
 
@@ -135,8 +137,8 @@ def get_category_index(transaction):
     print_categories(existing_cate)
     while invalid:
         try:
-            index = int(input("> "))
-            if(index == -1):
+            index = int(input("< "))
+            if index == -1:
                 return -1
             if index < 1 or index > len(existing_cate):
                 print("!!! That index does not exist !!!")
@@ -156,7 +158,7 @@ def get_transaction_index(transaction):
     while invalid:
         try:
             index = int(input("> "))
-            if(index == -1):
+            if index == -1:
                 return -1
             if index < 1 or index > len(existing_trans):
                 print("!!! That transaction id does not exist !!!")
@@ -193,7 +195,7 @@ def add_transaction(transaction):
 
             description = details_arr[2].strip()
 
-            details = { 'amount': amount, 'category': category_index, 
+            details = { 'amount': amount, 'category': category_index,
             'date': date, 'description': description }
         except ValueError:
             print("!!!!!!!!!!!!!!!!!!!!!")
@@ -262,10 +264,12 @@ def modify_category(transaction):
 
 # REPL
 # Loop to interact with Tracker
-trans = Transaction(input("Enter filename of database you would like to interact with (omit the .db extension): ") + '.db')
+trans = t_module.Transaction(
+    input("Enter filename of database you would like to interact with (omit the .db extension): ")
+    + '.db')
 print_commands()
-interface_active = True
-while interface_active:
+INTERFACE_ACTIVE = True
+while INTERFACE_ACTIVE:
     option = input("Enter Option # (11 to view options) > ")
     try:                                  # catch string to integer conversion errors
         option = int(option)
@@ -276,7 +280,7 @@ while interface_active:
             print("!!! Invalid Option # !!!")
         else:
             if option == 0:
-                interface_active = False
+                INTERFACE_ACTIVE = False
             elif option == 1:
                 print("Show Categories")        # print all categories
                 print_categories(trans.show_categories())
