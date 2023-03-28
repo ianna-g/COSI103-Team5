@@ -105,20 +105,21 @@ test_summary.py ....                                                            
 ================================================================== 4 passed in 0.01s ==================================================================
 ```
 
-## Modify and Delete Operations
+## Modify, Delete, and Check If Transaction Exists Operations
 
 - Testing modify_category() and delete_transaction()
 
-(base) shaithea@Shaitheas-MacBook-Pro pa03 % pytest test_transaction.py
-========================================================= test session starts ==========================================================
+(base) shaithea@shaitheas-mbp pa03 % pytest test_transaction.py
+================================================================= test session starts =================================================================
 platform darwin -- Python 3.9.7, pytest-6.2.4, py-1.10.0, pluggy-0.13.1
 rootdir: /Users/shaithea/Documents/GitHub/COSI103-Team5/pa03
 plugins: anyio-2.2.0
-collected 2 items                                                                                                                      
+collected 3 items                                                                                                                                     
 
-test_transaction.py ..                                                                                                           [100%]
+test_transaction.py ...                                                                                                                         [100%]
 
-========================================================== 2 passed in 0.02s ===========================================================
+================================================================== 3 passed in 0.03s ==================================================================
+(base) shaithea@shaitheas-mbp pa03 % 
 
 # tracker.py Demonstration Transcript
 
@@ -301,7 +302,7 @@ category   date            # of transactions    sum of transaction amounts
 1          2023-05-25      1                    4.0                           
 --------------------------------------------------------------------------------
 ```
-## Modify and Delete Categories Operations
+## Modify and Delete Categories Operations 
 ```
 (base) shaithea@Shaitheas-MacBook-Pro pa03 % python create_db.py
 (base) shaithea@Shaitheas-MacBook-Pro pa03 % python tracker.py  
