@@ -13,16 +13,47 @@ Shaithea: modify/delete
 # Pylint Transcript
 
 - Pylint for tracker.py
+(base) shaithea@shaitheas-mbp pa03 % pylint tracker.py
+
+-------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 9.32/10, +0.68)
 
 - Pylint for transaction.py
+(base) shaithea@shaitheas-mbp pa03 % pylint transaction.py
+
+-------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 5.91/10, +4.09)
 
 - Pylint for test_transaction.py
+(base) shaithea@shaitheas-mbp pa03 % pylint test_transaction.py
+
+--------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
 
 - Pylint for test_add.py
+(base) shaithea@shaitheas-mbp pa03 % pylint test_add.py
+
+-------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 5.77/10, +4.23)
 
 - Pylint for test_show.py
+(base) shaithea@shaitheas-mbp pa03 % pylint test_show.py
+
+------------------------------------
+Your code has been rated at 10.00/10
 
 - Pylint for test_summary.py
+(base) shaithea@shaitheas-mbp pa03 % pylint test_summary.py
+
+------------------------------------
+Your code has been rated at 10.00/10
+
+- Pylint for create_db.py
+(base) shaithea@shaitheas-mbp pa03 % pylint create_db.py
+
+-------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 7.14/10, +2.86)
+
 
 # Pytest Transcript
 
