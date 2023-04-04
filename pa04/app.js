@@ -86,6 +86,7 @@ app.use(layouts);
 app.use("/", indexRouter);
 app.use(addDelEditRouter);
 // app.use("/users", usersRouter);
+app.use("/sortBy", sortByRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
