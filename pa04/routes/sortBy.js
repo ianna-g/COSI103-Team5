@@ -4,22 +4,22 @@
 
 // Sort By Category:
 // This method returns to the same page except the data is 
-// sorted by its category column. 
+// sorted alphabetically by its category column. 
 
 
 
 // Sort By Amount:
 // This method returns to the same page except the data is 
-// sorted by its amount column. 
+// sorted in ascending order by its amount column. 
 
 
 
 // Sort By Description:
 // This method returns to the same page except the data is 
-// sorted by its description column. 
+// sorted alphabetically by its description column. 
 
 
 
 // Sort By Date:
 // This method returns to the same page except the data is 
-// sorted by its date column. 
+// sorted from the most recent date to the oldest date using its date column. 
