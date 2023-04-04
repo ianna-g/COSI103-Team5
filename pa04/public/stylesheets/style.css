@@ -6,3 +6,17 @@ body {
 a {
   color: #00B7FF;
 }
+
+.p-around {
+  padding: 10px;
+}
+
+#addNewTransaction {
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+}
+
+#addNewTransCon {
+  margin-top: 10px;
+}

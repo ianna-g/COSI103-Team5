@@ -2,10 +2,63 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <p>Here is your list of transactions.</p>
+    <div class="container">
+      <div class="row align-items-start">
+        <div class="col-sm border text-center p-around">
+          <button type="button" class="btn btn-primary">
+            group by category
+          </button>
+        </div>
+        <div class="col-sm border text-center p-around">
+          <button type="button" class="btn btn-primary">
+            sort by category
+          </button>
+        </div>
+        <div class="col-sm border text-center p-around">
+          <button type="button" class="btn btn-primary">sort by amount</button>
+        </div>
+        <div class="col-sm border text-center p-around">
+          <button type="button" class="btn btn-primary">
+            sort by description
+          </button>
+        </div>
+        <div class="col-sm border text-center p-around">
+          <button type="button" class="btn btn-primary">sort by date</button>
+        </div>
+      </div>
+      <div class="row align-items-start">
+        <div class="col-sm border p-around fw-bold">description</div>
+        <div class="col-sm border p-around fw-bold">amount</div>
+        <div class="col-sm border p-around fw-bold">category</div>
+        <div class="col-sm border p-around fw-bold">date</div>
+        <div class="col-sm border p-around fw-bold">delete</div>
+        <div class="col-sm border p-around fw-bold">edit</div>
+      </div>
+      <div class="row align-items-start">
+        <% transactions.forEach(transaction => { %>
+        <div class="col-sm border p-around"><%= transaction.description %></div>
+        <div class="col-sm border p-around"><%= transaction.amount %></div>
+        <div class="col-sm border p-around"><%= transaction.category %></div>
+        <div class="col-sm border p-around"><%= transaction.date %></div>
+        <div class="col-sm border p-around">delete</div>
+        <div class="col-sm border p-around">edit</div>
+        <% } %>
+      </div>
+      <div id="addNewTransCon">
+        <h2>Add a New Transaction</h2>
+        <form id="addNewTransaction" method="post" action="/add_transaction">
+          <input type="text" name="description" placeholder="description" />
+          <input type="text" name="category" placeholder="category" />
+          <input type="text" name="amount" placeholder="amount" />
+          <input type="text" name="date" placeholder="mm/dd/yyy" />
+          <input type="submit" value="store" />
+        </form>
+      </div>
+    </div>
   </body>
 </html>
