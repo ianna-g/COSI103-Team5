@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <form
+      id="addNewTransaction"
+      method="post"
+      action="/transactions/save/<%= transaction._id %>"
+    >
+      <input
+        type="text"
+        name="description"
+        value="<%= transaction.description %>"
+      />
+      <input type="text" name="category" value="<%= transaction.category %>" />
+      <input type="text" name="amount" value="<%= transaction.amount %>" />
+      <input type="text" name="date" value="<%= transaction.date %>" />
+      <input type="submit" value="save" />
+    </form>
+  </body>
+</html>

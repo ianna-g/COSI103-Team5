@@ -8,50 +8,69 @@
     <h1><%= title %></h1>
     <p>Here is your list of transactions.</p>
     <div class="container">
-      <div class="row align-items-start">
-        <div class="col-sm border text-center p-around">
-          <button type="button" class="btn btn-primary">
-            group by category
-          </button>
+      <table class="table table-striped">
+        <div class="row align-items-start">
+          <div class="col-sm border text-center p-around">
+            <button type="button" class="btn btn-primary">
+              group by category
+            </button>
+          </div>
+          <div class="col-sm border text-center p-around">
+            <button type="button" class="btn btn-primary">
+              sort by category
+            </button>
+          </div>
+          <div class="col-sm border text-center p-around">
+            <button type="button" class="btn btn-primary">
+              sort by amount
+            </button>
+          </div>
+          <div class="col-sm border text-center p-around">
+            <button type="button" class="btn btn-primary">
+              sort by description
+            </button>
+          </div>
+          <div class="col-sm border text-center p-around">
+            <button type="button" class="btn btn-primary">sort by date</button>
+          </div>
         </div>
-        <div class="col-sm border text-center p-around">
-          <button type="button" class="btn btn-primary">
-            sort by category
-          </button>
-        </div>
-        <div class="col-sm border text-center p-around">
-          <button type="button" class="btn btn-primary">sort by amount</button>
-        </div>
-        <div class="col-sm border text-center p-around">
-          <button type="button" class="btn btn-primary">
-            sort by description
-          </button>
-        </div>
-        <div class="col-sm border text-center p-around">
-          <button type="button" class="btn btn-primary">sort by date</button>
-        </div>
-      </div>
-      <div class="row align-items-start">
-        <div class="col-sm border p-around fw-bold">description</div>
-        <div class="col-sm border p-around fw-bold">amount</div>
-        <div class="col-sm border p-around fw-bold">category</div>
-        <div class="col-sm border p-around fw-bold">date</div>
-        <div class="col-sm border p-around fw-bold">delete</div>
-        <div class="col-sm border p-around fw-bold">edit</div>
-      </div>
-      <div class="row align-items-start">
-        <% transactions.forEach(transaction => { %>
-        <div class="col-sm border p-around"><%= transaction.description %></div>
-        <div class="col-sm border p-around"><%= transaction.amount %></div>
-        <div class="col-sm border p-around"><%= transaction.category %></div>
-        <div class="col-sm border p-around"><%= transaction.date %></div>
-        <div class="col-sm border p-around">delete</div>
-        <div class="col-sm border p-around">edit</div>
-        <% } %>
-      </div>
+        <thead>
+          <tr>
+            <th scope="col" class="col-sm border">description</th>
+            <th scope="col" class="col-sm border">amount</th>
+            <th scope="col" class="col-sm border">category</th>
+            <th scope="col" class="col-sm border">date</th>
+            <th scope="col" class="col-sm border">delete</th>
+            <th scope="col" class="col-sm border">edit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% transactions.forEach(transaction => { %>
+          <tr>
+            <td class="col-sm border p-around">
+              <%= transaction.description %>
+            </td>
+            <td class="col-sm border p-around"><%= transaction.amount %></td>
+            <td class="col-sm border p-around"><%= transaction.category %></td>
+            <td class="col-sm border p-around"><%= transaction.date %></td>
+            <td class="col-sm border p-around">
+              <a href="/transactions/remove/<%=transaction._id %>">
+                <i class="bi bi-trash"></i>
+              </a>
+            </td>
+            <td class="col-sm border p-around">
+              <a href="/transactions/edit/<%=transaction._id %>"
+                ><i class="bi bi-pencil-square"></i
+              ></a>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+
       <div id="addNewTransCon">
         <h2>Add a New Transaction</h2>
-        <form id="addNewTransaction" method="post" action="/add_transaction">
+        <form id="addNewTransaction" method="post" action="/transactions/add">
           <input type="text" name="description" placeholder="description" />
           <input type="text" name="category" placeholder="category" />
           <input type="text" name="amount" placeholder="amount" />
