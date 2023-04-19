@@ -4,11 +4,16 @@ const Transaction = require("../models/Transaction");
 
 /* add the value in the body to the list associated to the key */
 router.post("/add", async (req, res, next) => {
+  var dateString = req.body.date;
+  const dateArr = dateString.split("/");
+  var day = parseInt(dateArr[1]) + 1;
+  var date = new Date(dateArr[2] + "-" + dateArr[0] + "-" + day);
+
   const transaction = new Transaction({
     description: req.body.description,
     category: req.body.category,
     amount: req.body.amount,
-    date: req.body.date,
+    date: date,
   });
   await transaction.save();
   res.redirect("/");
