@@ -5,6 +5,7 @@ var router = express.Router();
 const Transaction = require("../models/Transaction");
 
 router.get("/", async (req, res, next) => {
+//these run in index.js in the routes folder
 
     // Sort By Category:
     // This method returns to the same page except the data is 
