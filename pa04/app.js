@@ -6,6 +6,7 @@ var logger = require("morgan");
 const layouts = require("express-ejs-layouts");
 
 var indexRouter = require("./routes/index");
+var groupByRouter = require("./routes/groupBy");
 var addDelEditRouter = require("./routes/addDelEdit");
 // var usersRouter = require("./routes/users");
 
@@ -84,6 +85,7 @@ app.use(layouts);
 /*  Routers */
 /* **************************************** */
 app.use("/", indexRouter);
+app.use("/groupBy", groupByRouter);
 app.use("/transactions", addDelEditRouter);
 // app.use("/users", usersRouter);
 // app.use("/sortBy", sortByRouter);

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Here is your list of transactions.</p>
+    <a href="/">Back to transaction table</a>
+    <div class="container">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col" class="col-sm border">category</th>
+            <th scope="col" class="col-sm border">amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% results.map(item => { %>
+            <tr>
+                <td class="col-sm border p-around">
+                    <%= item._id %>
+                </td>
+                <td class="col-sm border p-around"><%= item.amount %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
