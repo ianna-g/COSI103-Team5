@@ -11,7 +11,7 @@ router.get("/", async (req, res, next) => {
 } else if (req.query.sortBy == 'description') {
   transactions = await Transaction.find({}).sort({description:1})
 } else if (req.query.sortBy == 'date') {
-  transactions = await Transaction.find({}).sort({date:1})
+  transactions = await Transaction.aggregate( [{ $sort: { date : 1 } }] )
 }
   else {
     res.locals.transactions = await Transaction.find();
