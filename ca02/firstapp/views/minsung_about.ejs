@@ -1,6 +1,35 @@
 <h1>About</h1>
 <br />
 <div>
+  <h1>Custom HTML Webpage Generator</h1>
   <h3>Minsung Kim</h3>
-  <div>This is about...</div>
+  <div>
+    This webapp uses the NLP Cloud API that is based on GPT. Given a name and
+    description<br />
+    of an HTML interface, the app custom generates and saves HTML code. Users
+    can then<br />
+    navigate to "Saved Webpages" where they can click on a webpage that was
+    saved, and view<br />
+    their custom generated webpage.<br />
+    <br />
+    Heres how it works:
+    <br />
+    1. get name and description from user<br />
+    2. create the appropriate prompt to send to the NLP Cloud API<br />
+    appropriate prompt = <br />
+    `Generate html code using the following description of a web page: `<br />
+    + """USER'S DESCRIPTION """ +<br />
+    `Make sure that the code can be pasted onto a div tag, add words, and assume
+    that there are no external files.`<br />
+    3. connect to the NLP Cloud API and send the prompt<br />
+    4. await response from API<br />
+    5. create a Mongodb document using name, description, the NLP
+    Cloud-generated HTML code, and the user's id<br />
+    6. save the Mongodb document to the database<br />
+    <br />
+    When a user clicks on a saved HTML webpage...<br />
+    1. a query is made to find the html code that is stored in the database<br />
+    2. once the document is found by it's id, the page is directed to a new page
+    with the html applied
+  </div>
 </div>

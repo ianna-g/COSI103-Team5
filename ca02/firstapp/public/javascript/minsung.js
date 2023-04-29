@@ -29,6 +29,7 @@ const generateHTML = () => {
   if (errors == true) {
     document.getElementById("errors").innerHTML = "<ul>" + errorMsg + "</ul>";
   } else {
+    document.getElementById("generate").disabled = true;
     callGPTAPI(name, des);
   }
 };
@@ -43,7 +44,8 @@ const callGPTAPI = (name, des) => {
     },
     success: function (response) {
       // $("#errors").text(response);
-      location.reload();
+      // location.reload();
+      console.log("user data input!");
     },
     error: function (err) {
       $("#errors").text(err);
