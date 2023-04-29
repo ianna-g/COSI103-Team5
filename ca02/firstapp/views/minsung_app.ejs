@@ -1,7 +1,38 @@
-<h1>App</h1>
-<br />
-<div>
-  <h3>Minsung Kim</h3>
+<link rel="stylesheet" href="/stylesheets/minsung.css" />
+<script type="text/javascript" src="/javascript/minsung.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<h1>Custom HTML Webpage Generator</h1>
+<h3>Minsung Kim</h3>
+<div id="colContainer">
+  <div id="rowContainer">
+    <div id="htmlDesContainer">
+      <input id="nameBox" type="text" placeholder="Name" name="pageName" />
+      <br />
+      <textarea
+        id="descriptionBox"
+        placeholder="Specific description..."
+        name="description"
+      ></textarea>
+      <div id="inputButtonsContainer">
+        <button id="clearFields" onclick="clearFields()">Clear</button>
+        <button id="generate" onclick="generateHTML()">Generate</button>
+      </div>
+      <div id="errors"></div>
+    </div>
+    <div id="htmlCatalog">
+      <h3>Saved Webpages</h3>
+      <div id="displayItemContainer">
+        <% pages.forEach(page => { %>
+        <a href="/minsung/demo_page/<%= page._id %>">
+          <div class="webpageDisplayItem">
+            <i class="fa-sharp fa-solid fa-cubes" style="font-size: 50px"></i>
+            <div><%= page.name %></div>
+          </div>
+        </a>
+        <% }) %>
+      </div>
+    </div>
+  </div>
   <div>
     <a href="/minsung/about">About this app</a>
   </div>

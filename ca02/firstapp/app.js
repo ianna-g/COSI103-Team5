@@ -16,6 +16,7 @@ const User = require("./models/User");
 const mongodb_URI =
   process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/pwdemo";
 console.log("MONGODB_URI=", process.env.MONGODB_URI);
+console.log("api_key=", process.env.api_key);
 
 const mongoose = require("mongoose");
 
