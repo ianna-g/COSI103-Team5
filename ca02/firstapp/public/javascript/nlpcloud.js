@@ -2,11 +2,9 @@ const NLPCloudClient = require("nlpcloud");
 
 const client = new NLPCloudClient(
   "finetuned-gpt-neox-20b",
-  "f34fa096050a37d92be15c22418aedcd483c62ec",
+  process.env.api_key,
   true
 );
-const prompt =
-  "web page with lots of circles and colors that is used to show off food item in a frame with nice shadow borders.";
 
 const generateHTMLCode = async (prompt) => {
   try {
