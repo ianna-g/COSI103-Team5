@@ -7,6 +7,7 @@ const layouts = require("express-ejs-layouts");
 const pw_auth_router = require("./routes/pwauth");
 const weatherRouter = require("./routes/weather");
 const minsungRouter = require("./routes/minsung");
+const roseRouter = require("./routes/rose");
 const iannaRouter = require("./routes/ianna");
 
 const User = require("./models/User");
@@ -102,6 +103,7 @@ app.get("/team_page", (req, res, next) => {
 
 app.use(weatherRouter);
 app.use("/minsung", minsungRouter);
+app.use("/rose", roseRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

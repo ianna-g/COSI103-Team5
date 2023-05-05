@@ -1,0 +1,51 @@
+#colContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #rowContainer {
+    display: flex;
+    flex-direction: row;
+    column-gap: 15px;
+  }
+  
+  #nameBox {
+    width: 200px;
+    height: 30px;
+  }
+  
+  #inputButtonsContainer {
+    margin-top: 10px;
+  }
+  
+  #errors {
+    height: 100px;
+    color: red;
+  }
+  
+  .webpageDisplayItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(203, 241, 242);
+    border-radius: 5px;
+    width: 100px;
+    height: 100px;
+    color: black;
+  }
+  
+  .webpageDisplayItem:hover {
+    background-color: rgb(179, 212, 213);
+    cursor: pointer;
+  }
+  
+  #displayItemContainer {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+    width: 350px;
+    row-gap: 10px;
+    column-gap: 10px;
+  }

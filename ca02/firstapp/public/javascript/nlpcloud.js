@@ -6,15 +6,24 @@ const client = new NLPCloudClient(
   true
 );
 
+
+
 const generateHTMLCode = async (prompt) => {
   try {
-    const response = await client.codeGeneration(
-      `Generate html code using the following description of a web page: ` +
-        prompt +
-        ` 
-    Make sure that the code can be pasted onto a div tag, add words, and assume that there are no external files.`
-    );
+    const response = await client.textCorrection(prompt);
     return response.data.generated_code;
+  } catch (error) {
+    console.error(error.response.status);
+    console.error(error.response.data.detail);
+  }
+};
+
+const generateCorrection = async (prompt) => {
+  try {
+    console.log("generateCorrection");
+    const response = await client.gsCorrection(prompt);
+    console.log(response.data);
+    return response.data;
   } catch (error) {
     console.error(error.response.status);
     console.error(error.response.data.detail);
@@ -23,4 +32,5 @@ const generateHTMLCode = async (prompt) => {
 
 module.exports = {
   generateHTMLCode,
+  generateCorrection,
 };

@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="/stylesheets/rose.css" />
+<script type="text/javascript" src="/javascript/rose.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<h1>Grammar Checker</h1>
+<h3> Rose Nolan </h3>
+<div id="colContainer">
+  <div id="rowContainer">
+    <div id="prevQueryContainer">
+      <input id="inputBox" type="text" placeholder="Text to correct" name="queryName" />
+      <div id="inputButtonsContainer">
+        <button id="clearFields" onclick="clearFields()">Clear</button>
+        <button id="generate" onclick="generateTextCorrection()">Generate correction</button>
+      </div>
+      <div id="errors"></div>
+    </div>
+    <div id="correctionCatalog">
+      <h3>Saved Queries</h3>
+      <div id="displayItemContainer">
+        <% prevQueries.forEach(prevQuery => { %>
+        <a href="/rose/before_and_after/<%= prevQuery._id %>"><%= prevQuery.name %></a>
+        <a href="/rose/remove/<%=prevQuery._id %>">
+          <i class="bi bi-trash"></i>
+        </a>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+  <div>
+    <a href="/rose/about">About this app</a>
+  </div>
+</div>
