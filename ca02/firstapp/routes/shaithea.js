@@ -33,15 +33,16 @@ router.get("/", isLoggedIn, async (req, res, next) => {
  * After a response is received, save the data to the database in the form of BedtimeStory document
  */
   router.post("/generate_bedtime_story", async (req, res, next) => {
-    const content = req.body.prompt;
+    const content = "use the following to create a sweet bedtime story please:" + req.body.prompt;
   
     try {
       console.log("trying");
       const story = await nlpCloud.generateBedtimeStory(content);
+      console.log(story);
       const code = new BedtimeStory({
         name: req.body.name,
         content: req.body.prompt,
-        story: story,
+        story: story.story,
         userId: req.user._id,
       });
       await code.save();
@@ -55,14 +56,22 @@ router.get("/", isLoggedIn, async (req, res, next) => {
  * GET: Show a saved user page that was selected by finding the bedtime story in the Mongodb collection
  * Then render the bedtime_story_demo_page that loads the story
  */
-router.get("/demo_page/:bedtimeStorypageId", isLoggedIn, async (req, res, next) => {
+router.get("/bedtime_story/:bedtimeStorypageId", isLoggedIn, async (req, res, next) => {
   const id = req.params.bedtimeStorypageId;
   try {
     const story = await BedtimeStory.findById(id);
-    res.render("bedtime_story_demo_page", { story: story.story });
+    res.render("bedtime_story", { story: story.story });
   } catch (error) {
     console.log("There was an error finding document by id", error);
   }
+});
+
+router.get('/remove/:bedtimeStorypageId',
+  isLoggedIn,
+  async (req, res, next) => {
+      console.log("inside /shaithea/remove/:bedtimeStorypageId")
+      await BedtimeStory.deleteOne({_id:req.params.bedtimeStorypageId});
+      res.redirect('/rose')
 });
 
 module.exports = router;
