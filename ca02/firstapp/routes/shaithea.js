@@ -10,15 +10,15 @@ const BedtimeStory = require("../models/BedtimeStory.js");
  * Query all BedtimeStory documents from db and send to ejs page
  */
 router.get("/", isLoggedIn, async (req, res, next) => {
-  var pages = [];
+  var stories = [];
   try {
-    pages = await BedtimeStory.find({ userId: req.user._id });
+    stories = await BedtimeStory.find({ userId: req.user._id });
     console.log("done finding bedtime story code documents");
   } catch (error) {
     console.log("there was an error fetching all bedtime story webpages:", error);
   }
-  // console.log(pages);
-  res.render("shaithea_app", { pages: pages });
+  console.log(stories);
+  res.render("shaithea_app", { stories: stories });
 });
 
 /**
