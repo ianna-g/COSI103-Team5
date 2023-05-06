@@ -17,7 +17,7 @@
 <div id="colContainer">
     <div id="rowContainer">
       <div id="storyContainer">
-        <input id="contentBox" type="text" placeholder="Content For Your Bedtime Story" name="storyContent" />
+        <input id="contentBox" type="text" placeholder="Content For Your Story" name="storyContent" />
         
         <div id="inputButtonsContainer">
           <button id="clearFields" onclick="clearFields()">Clear</button>
@@ -33,11 +33,6 @@
           <% pages.forEach(prevQuery => { %>
           <a href="/shaithea/demo_page/<%= page._id %>">
             <div class="displayStory">
-              <form method="post" action = "/bedtime_story">
-                <textarea name="prompt" size="50"></textarea>
-                <br>
-                <input type="submit" value="Get Bedtime Story!" />
-              </form>
               <div><%= page.name %></div>
             </div>
           </a>
