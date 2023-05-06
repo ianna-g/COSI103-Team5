@@ -1,8 +1,8 @@
 /**
- * clear the input field
+ * clear the input fields for the content of the bedtime story
  */
 const clearFields = () => {
-    document.getElementById("inputBox").value = "";
+    document.getElementById("contentBox").value = "";
   };
   
 /**
@@ -11,14 +11,17 @@ const clearFields = () => {
 const generateStory = () => {
     document.getElementById("errors").innerHTML = "";
     var errorMsg = "";
-    const input = document.getElementById("inputBox").value;
+    var errors = false;
+
+    const content = document.getElementById("contentBox").value;
   
-    if (input.length == 0) {
-      errorMsg += "<li>Input field is missing</li>";
+    if (content.length == 0) {
+      errors = true;
+      errorMsg += "<li>Content field of your story is missing!</li>";
       document.getElementById("errors").innerHTML = "<ul>" + errorMsg + "</ul>";
     } else {
       document.getElementById("generate").disabled = true;
-      callGPTAPI(input);
+      callGPTAPI(content);
     }
   };
   
@@ -27,13 +30,13 @@ const generateStory = () => {
 * @param {*} input
 * makes a post request to /generate_colors that generates a response and saves data to db
 */
-const callGPTAPI = (input) => {
+const callGPTAPI = (content) => {
     $.ajax({
     url: "http://localhost:3000/shaithea/generate_bedtime_story",
     type: "post",
     data: {
-        name: input,
-        prompt: input,
+        name: content,
+        prompt: content,
     },
     success: function (response) {
         // $("#errors").text(response);

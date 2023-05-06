@@ -45,4 +45,5 @@ const generateBedtimeStory = async (prompt) => {
 module.exports = {
   generateHTMLCode,
   generateCorrection,
+  generateBedtimeStory,
 };

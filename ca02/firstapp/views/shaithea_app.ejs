@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shaithea's App</title>
     <link rel="stylesheet" href="shaithea.css">
+    <script type="text/javascript" src="/javascript/shaithea.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
 
 <h1>Bedtime Story Generator!</h1>
@@ -14,21 +16,25 @@
 
 <div id="colContainer">
     <div id="rowContainer">
-      <div id="prevQueryContainer">
-        <input id="inputBox" type="text" placeholder="content for story" name="queryName" />
+      <div id="storyContainer">
+        <input id="contentBox" type="text" placeholder="Content For Your Bedtime Story" name="storyContent" />
+        
         <div id="inputButtonsContainer">
           <button id="clearFields" onclick="clearFields()">Clear</button>
           <button id="generate" onclick="generateStory()">Generate Story</button>
         </div>
+
         <div id="errors"></div>
       </div>
-      <div id="correctionCatalog">
-        <h3>Saved Queries</h3>
+
+      <div id="storyCatalog">
+        <h3>Saved Stories</h3>
         <div id="displayItemContainer">
-          <% prevQueries.forEach(prevQuery => { %>
-          <a href="/shaithea/before_and_after/<%= prevQuery._id %>"><%= prevQuery.name %></a>
-          <a href="/shaithea/remove/<%=prevQuery._id %>">
-            <i class="bi bi-trash"></i>
+          <% pages.forEach(prevQuery => { %>
+          <a href="/shaithea/demo_page/<%= page._id %>">
+            <div class="displayStory">
+              <div><%= page.name %></div>
+            </div>
           </a>
           <% }) %>
         </div>
