@@ -8,7 +8,7 @@ const clearFields = () => {
 /**
 * Checks valid input field, catches/displays errors, calls callGPTAPI() if every input field is valid
 */
-const generateTextCorrection = () => {
+const generateStory = () => {
     document.getElementById("errors").innerHTML = "";
     var errorMsg = "";
     const input = document.getElementById("inputBox").value;
@@ -20,7 +20,7 @@ const generateTextCorrection = () => {
       document.getElementById("generate").disabled = true;
       callGPTAPI(input);
     }
-    };
+  };
   
 /**
 *
@@ -41,7 +41,7 @@ const callGPTAPI = (input) => {
         console.log("user data input!");
     },
     error: function (err) {
-        $("bedtime story!").text(err);
+        $("#errors").text(err);
     },
     });
 };

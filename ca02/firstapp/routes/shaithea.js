@@ -26,7 +26,7 @@ router.get("/", isLoggedIn, async (req, res, next) => {
   
     try {
       console.log("trying");
-      const story = await nlpCloud.generateCorrection(request);
+      const story = await nlpCloud.generateBedtimeStory(request);
       const code = new PrevQueries({
         name: req.body.name,
         input: req.body.prompt,

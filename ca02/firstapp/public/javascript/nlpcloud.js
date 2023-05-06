@@ -30,6 +30,18 @@ const generateCorrection = async (prompt) => {
   }
 };
 
+const generateBedtimeStory = async (prompt) => {
+  try {
+    console.log("generateBedtimeStory");
+    const response = await client.bedtimeStory(prompt);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error(error.response.status);
+    console.error(error.response.data.detail);
+  }
+};
+
 module.exports = {
   generateHTMLCode,
   generateCorrection,
