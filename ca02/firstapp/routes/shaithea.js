@@ -18,7 +18,7 @@ router.get("/", isLoggedIn, async (req, res, next) => {
     console.log("there was an error fetching all bedtime story webpages:", error);
   }
   // console.log(pages);
-  res.render("shaitea_app", { pages: pages });
+  res.render("shaithea_app", { pages: pages });
 });
 
 /**
