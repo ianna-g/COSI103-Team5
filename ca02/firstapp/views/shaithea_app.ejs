@@ -9,6 +9,37 @@
     <link rel="stylesheet" href="shaithea.css">
 </head>
 
+<h1>Bedtime Story Generator!</h1>
+<h3>Shaithea Alam</h3>
+
+<div id="colContainer">
+    <div id="rowContainer">
+      <div id="prevQueryContainer">
+        <input id="inputBox" type="text" placeholder="content for story" name="queryName" />
+        <div id="inputButtonsContainer">
+          <button id="clearFields" onclick="clearFields()">Clear</button>
+          <button id="generate" onclick="generateStory()">Generate Story</button>
+        </div>
+        <div id="errors"></div>
+      </div>
+      <div id="correctionCatalog">
+        <h3>Saved Queries</h3>
+        <div id="displayItemContainer">
+          <% prevQueries.forEach(prevQuery => { %>
+          <a href="/shaithea/before_and_after/<%= prevQuery._id %>"><%= prevQuery.name %></a>
+          <a href="/shaithea/remove/<%=prevQuery._id %>">
+            <i class="bi bi-trash"></i>
+          </a>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+    <div>
+      <a href="/shaithea/about">About this app</a>
+    </div>
+  </div>
+
+
 <body>
     
 </body>
