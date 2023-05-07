@@ -1,5 +1,36 @@
 <link rel="stylesheet" href="/stylesheets/ianna.css" />
 <script type="text/javascript" src="/javascript/ianna.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<h1>Custom HTML Webpage Generator</h1>
-<h3>Ianna Gilbert/h3>
+<h1>Custom Bible Verse Webpage Generator</h1>
+<h3>Ianna Gilbert</h3>
+
+<img src= "https://www.bible.com/assets/icons/bible/200/en.png">
+
+
+
+          <!-- <div id="BibleVerseContainer"> -->
+            <input id="inputBox" type="text" placeholder="Type in verse" name="BibleVerseName" />
+            <!-- <div id="inputButtonsContainer"> -->
+          
+              <button id="clearFields" onclick="clearFields()">Clear</button>
+              <button id="generate" onclick="generateTextCorrection()">Generate Bible Verse</button>
+            <!-- </div> -->
+            <div id="errors"></div>
+          <!-- </div> -->
+          <div id="correctionCatalog">
+            <h3>Saved Verses</h3>
+            <div id="displayItemContainer">
+              <% BibleVerse.forEach(BibleVerse => { %>
+              <a href="/ianna/before_and_after/<%= BibleVerse._id %>"><%= BibleVerse.name %></a>
+              <a href="/ianna/remove/<%=BibleVerse._id %>">
+                <i class="bi bi-trash"></i>
+              </a>
+              <% }) %>
+            </div>
+          </div>
+
+          <br><br>
+
+        <div>
+          <a href="/ianna/about">About this app</a>
+        </div>
