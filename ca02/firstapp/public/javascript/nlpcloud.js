@@ -31,14 +31,26 @@ const generateCorrection = async (prompt) => {
 };
 
 const generateBedtimeStory = async (prompt) => {
-  client.generation('please use the following to create a sweet bedtime story: ' + prompt).then(function (response) {
+  try {
+    console.log("generateBedtimeStory");
+    const response = await client.generation(prompt);
     console.log(response.data);
+    res.redirect('/shaithea/bedtime_story')
     return response.data.generated_text;
-  })
-  .catch(function (err) {
-    console.error(err.response.status);
-    console.error(err.response.data.detail);
-  });
+  } catch (error) {
+    console.error(error.response.status);
+    console.error(error.response.data.detail);
+  }
+
+
+  // client.generation('please use the following to create a sweet bedtime story: ' + prompt).then(function (response) {
+  //   console.log(response.data);
+  //   return response.data.generated_text;
+  // })
+  // .catch(function (err) {
+  //   console.error(err.response.status);
+  //   console.error(err.response.data.detail);
+  // });
 
   // try {
   //   client.generation('please use the following to create a sweet bedtime story: ' + prompt)
