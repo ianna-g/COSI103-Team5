@@ -33,7 +33,7 @@ const generateCorrection = async (prompt) => {
 const generateBedtimeStory = async (prompt) => {
   client.generation('please use the following to create a sweet bedtime story: ' + prompt).then(function (response) {
     console.log(response.data);
-    return response.data;
+    return response.data.generated_text;
   })
   .catch(function (err) {
     console.error(err.response.status);
