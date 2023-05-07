@@ -104,6 +104,7 @@ app.get("/team_page", (req, res, next) => {
 
 app.use(weatherRouter);
 app.use("/minsung", minsungRouter);
+app.use("/ianna", iannaRouter);
 app.use("/rose", roseRouter);
 app.use("/shaithea", shaitheaRouter);
 
