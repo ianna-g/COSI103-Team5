@@ -28,7 +28,7 @@ const generateStory = () => {
 /**
 *
 * @param {*} input
-* makes a post request to /generate_colors that generates a response and saves data to db
+* makes a post request that generates a response and saves data to db
 */
 const callGPTAPI = (content) => {
     $.ajax({
@@ -40,7 +40,7 @@ const callGPTAPI = (content) => {
     },
     success: function (response) {
         // $("#errors").text(response);
-        // location.reload();
+        location.reload();
         console.log("user data input!");
     },
     error: function (err) {
