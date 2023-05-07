@@ -62,7 +62,7 @@ router.get("/bedtime_story/:bedtimeStorypageId", isLoggedIn, async (req, res, ne
   const id = req.params.bedtimeStorypageId;
   try {
     const story = await BedtimeStory.findById(id);
-    res.render("bedtime_story", { story: story.story });
+    res.render("bedtime_story", { story: story });
   } catch (error) {
     console.log("There was an error finding document by id", error);
   }

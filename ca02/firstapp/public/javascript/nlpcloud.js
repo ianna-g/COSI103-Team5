@@ -33,10 +33,27 @@ const generateCorrection = async (prompt) => {
 const generateBedtimeStory = async (prompt) => {
   try {
     console.log("generateBedtimeStory");
-    const response = await client.generation(prompt);
+    const response = await client.generation(prompt,
+      50,
+      [],
+      true,
+      '.',
+      true,
+      true,
+      1,
+      false,
+      0,
+      1,
+      50,
+      1,
+      0.8,
+      1,
+      1,
+      null,
+      false);
     console.log(response.data);
-    res.redirect('/shaithea/bedtime_story')
-    return response.data.generated_text;
+    // res.redirect('/shaithea/bedtime_story')
+    return response.data;
   } catch (error) {
     console.error(error.response.status);
     console.error(error.response.data.detail);
