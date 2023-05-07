@@ -33,19 +33,21 @@ router.get("/", isLoggedIn, async (req, res, next) => {
  * After a response is received, save the data to the database in the form of BedtimeStory document
  */
   router.post("/generate_bedtime_story", async (req, res, next) => {
-    const content = "use the following to create a sweet bedtime story please:" + req.body.prompt;
+    const prompt = "use the following to create a sweet bedtime story please:" + req.body.prompt;
   
     try {
       console.log("trying");
-      const story = await nlpCloud.generateBedtimeStory(content);
+      const story = await nlpCloud.generateBedtimeStory(prompt);
       console.log(story);
+
       const code = new BedtimeStory({
         name: req.body.name,
         content: req.body.prompt,
-        story: story.story,
+        story: story,
         userId: req.user._id,
       });
       await code.save();
+      console.log(code.data);
       res.redirect("/shaithea");
     } catch (error) {
       console.log("ERROR: " + error);

@@ -31,15 +31,25 @@ const generateCorrection = async (prompt) => {
 };
 
 const generateBedtimeStory = async (prompt) => {
-  try {
-    console.log("generateBedtimeStory");
-    const response = await client.bedtimeStory(prompt);
+  client.generation('please use the following to create a sweet bedtime story: ' + prompt).then(function (response) {
     console.log(response.data);
     return response.data;
-  } catch (error) {
-    console.error(error.response.status);
-    console.error(error.response.data.detail);
-  }
+  })
+  .catch(function (err) {
+    console.error(err.response.status);
+    console.error(err.response.data.detail);
+  });
+
+  // try {
+  //   client.generation('please use the following to create a sweet bedtime story: ' + prompt)
+  //   console.log("generateBedtimeStory");
+  //   const response = await client.bedtimeStory(prompt);
+  //   console.log(response.data);
+  //   return response.data;
+  // } catch (error) {
+  //   console.error(error.response.status);
+  //   console.error(error.response.data.detail);
+  // }
 };
 
 module.exports = {
