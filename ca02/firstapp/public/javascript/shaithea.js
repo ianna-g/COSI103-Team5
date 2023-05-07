@@ -40,7 +40,8 @@ const callGPTAPI = (content) => {
     },
     success: function (response) {
         // $("#errors").text(response);
-        // location.reload();
+
+        location.reload();
         console.log("user data input!");
     },
     error: function (err) {
