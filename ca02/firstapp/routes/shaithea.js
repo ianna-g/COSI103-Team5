@@ -71,7 +71,7 @@ router.get('/remove/:bedtimeStorypageId',
   async (req, res, next) => {
       console.log("inside /shaithea/remove/:bedtimeStorypageId")
       await BedtimeStory.deleteOne({_id:req.params.bedtimeStorypageId});
-      res.redirect('/rose')
+      res.redirect('/shaithea')
 });
 
 module.exports = router;
